@@ -1,0 +1,31 @@
+Move the feedback updates out of the main loop, just update them when the cam angle is calculated in the ISR.
+	There's no point updating the solenoid duty cycle without new information.
+
+Low-pass filter on target angle?
+	Maybe just for a few seconds after coming out of idle or sync mode
+
+Synchronize at ~3000, log the baseline angle
+	Then hard-code the baseline and skip the sync phase entirely from now on.
+
+Replace UpdateRollingAverage with an exponential filter
+	https://www.megunolink.com/documentation/arduino-libraries/exponential-filter/
+	value = (weight * newvalue)) + ((1 - weight) * oldValue)
+
+Revise older classes to use interface-style class declarations
+	ScreenNavigator
+	Mode
+	PlxProcessor
+	InterruptHandlers
+
+Clean up / remove:
+	DebugSolenoidDuty
+
+Paint a second timing mark on the cam pulley
+	Would allow doing the feedback math & solenoid DC changes twice as often
+	Only paint 1/8th of the pulley for the new mark.
+	CrankState must distinguish between long and short marks
+	ExhaustCamState would calculate angle during Pulse2 ISRs, based on time since short crank mark.
+
+Add MAP sensor
+	Will allow reduced retard for lower overlap at high boost
+	Not sure how useful that would be, though.

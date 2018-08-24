@@ -1,0 +1,12 @@
+Exhaust cam sensors have 3 wires
++12v
+Ground
+Signal - normally high, pulled low when triggered.
+
+Signal output goes through a 100 ohm resistor, then is clamped to 3.3v with a zener diode to ground, then goes through a 200 ohm resistor and into the Arduino input pin.
+
+
+
+Crank sensor is a TCRT5000 on carrier board with an LM393, available from many different vendors.
+Example: http://osoyoo.com/2017/08/15/tcrt5000-infrared-line-tracking-sensor/
+

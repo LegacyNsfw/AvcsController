@@ -1,0 +1,15 @@
+// Invokes jobs periodically
+
+class IPeriodicJobs
+{
+public:
+	static IPeriodicJobs* GetInstance();
+
+	virtual void Initialize() = 0;
+	virtual void Update() = 0;
+};
+
+///////////////////////////////////////////////////////////////////////////////
+// Unit test suite entry point
+///////////////////////////////////////////////////////////////////////////////
+void SelfTestPeriodicJobs();

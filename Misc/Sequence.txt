@@ -1,0 +1,610 @@
+CrankHigh                 -      8261200
+LeftExhaustCamHigh1       -        14955
+RightExhaustCamLow2       -        25076
+RightExhaustCamHigh1      -        44387
+LeftExhaustCamLow1        -        25113
+RightExhaustCamLow1       -        49306
+LeftExhaustCamHigh2       -        74047
+CrankLow                  -        90111
+LeftExhaustCamLow2        -        88036
+RightExhaustCamHigh2      -       104157
+
+
+CrankHigh                 -      8854021
+LeftExhaustCamHigh1       -        15209
+RightExhaustCamLow2       -       115525
+RightExhaustCamHigh1      -        45622
+LeftExhaustCamLow1        -        75880
+RightExhaustCamLow1       -        50486
+LeftExhaustCamHigh2       -        76047
+CrankLow                  -        92555
+LeftExhaustCamLow2        -       107748
+RightExhaustCamHigh2      -       104218
+
+
+CrankHigh                 -      9334537
+LeftExhaustCamHigh1       -        15065
+RightExhaustCamLow2       -        25366
+RightExhaustCamHigh1      -        44943
+LeftExhaustCamLow1        -        30526
+RightExhaustCamLow1       -        54958
+LeftExhaustCamHigh2       -        74563
+CrankLow                  -        90783
+LeftExhaustCamLow2        -       111948
+RightExhaustCamHigh2      -       103986
+
+
+CrankHigh                 -      9928705
+LeftExhaustCamHigh1       -        15157
+RightExhaustCamLow2       -        25411
+RightExhaustCamHigh1      -        45103
+LeftExhaustCamLow1        -        55049
+RightExhaustCamLow1       -        50096
+LeftExhaustCamHigh2       -        75249
+CrankLow                  -        91577
+LeftExhaustCamLow2        -        80713
+RightExhaustCamHigh2      -       105836
+
+
+CrankHigh                 -     10407935
+LeftExhaustCamHigh1       -        15256
+RightExhaustCamLow2       -        25587
+RightExhaustCamHigh1      -        45380
+LeftExhaustCamLow1        -        35328
+RightExhaustCamLow1       -        55670
+LeftExhaustCamHigh2       -        75624
+CrankLow                  -        92047
+LeftExhaustCamLow2        -       115053
+RightExhaustCamHigh2      -       105133
+
+
+CrankHigh                 -     11128690
+LeftExhaustCamHigh1       -        15148
+RightExhaustCamLow2       -        25148
+RightExhaustCamHigh1      -        44454
+LeftExhaustCamLow1        -        56622
+RightExhaustCamLow1       -        54720
+LeftExhaustCamHigh2       -        73997
+CrankLow                  -        90036
+LeftExhaustCamLow2        -        79178
+RightExhaustCamHigh2      -       103772
+
+
+CrankHigh                 -     11718938
+LeftExhaustCamHigh1       -        15194
+RightExhaustCamLow2       -        25482
+RightExhaustCamHigh1      -        45162
+LeftExhaustCamLow1        -        65493
+RightExhaustCamLow1       -        55479
+LeftExhaustCamHigh2       -        75508
+CrankLow                  -        92470
+LeftExhaustCamLow2        -        94792
+RightExhaustCamHigh2      -       106457
+
+
+CrankHigh                 -     12201720
+LeftExhaustCamHigh1       -        15212
+RightExhaustCamLow2       -        25310
+RightExhaustCamHigh1      -        44697
+LeftExhaustCamLow1        -        25274
+RightExhaustCamLow1       -        49404
+LeftExhaustCamHigh2       -        74264
+CrankLow                  -        90375
+LeftExhaustCamLow2        -        96753
+RightExhaustCamHigh2      -       104007
+
+
+CrankHigh                 -     12795179
+LeftExhaustCamHigh1       -        15168
+RightExhaustCamLow2       -       115097
+RightExhaustCamHigh1      -        45068
+LeftExhaustCamLow1        -        39141
+RightExhaustCamLow1       -        49851
+LeftExhaustCamHigh2       -        76272
+CrankLow                  -        92821
+LeftExhaustCamLow2        -       119466
+RightExhaustCamHigh2      -       106442
+
+
+CrankHigh                 -     13276906
+LeftExhaustCamHigh1       -        15134
+RightExhaustCamLow2       -        25370
+RightExhaustCamHigh1      -        44986
+LeftExhaustCamLow1        -        36933
+RightExhaustCamLow1       -        49869
+LeftExhaustCamHigh2       -        75119
+CrankLow                  -        91529
+LeftExhaustCamLow2        -        80684
+RightExhaustCamHigh2      -       105884
+
+
+CrankHigh                 -     27869219
+LeftExhaustCamHigh1       -        15368
+RightExhaustCamLow2       -        25603
+RightExhaustCamHigh1      -        45633
+LeftExhaustCamLow1        -        64174
+RightExhaustCamLow1       -        50080
+LeftExhaustCamHigh2       -        75351
+CrankLow                  -        91776
+LeftExhaustCamLow2        -        94657
+RightExhaustCamHigh2      -       105641
+
+
+CrankHigh                 -     28350868
+LeftExhaustCamHigh1       -        15196
+RightExhaustCamLow2       -        25537
+RightExhaustCamHigh1      -        45477
+LeftExhaustCamLow1        -        20184
+RightExhaustCamLow1       -        49916
+LeftExhaustCamHigh2       -        75007
+CrankLow                  -        91291
+LeftExhaustCamLow2        -        93612
+RightExhaustCamHigh2      -       104255
+
+
+CrankHigh                 -     28947857
+LeftExhaustCamHigh1       -        15102
+RightExhaustCamLow2       -       115288
+RightExhaustCamHigh1      -        45202
+LeftExhaustCamLow1        -        36421
+RightExhaustCamLow1       -        85248
+LeftExhaustCamHigh2       -        75135
+CrankLow                  -        91441
+LeftExhaustCamLow2        -       116602
+RightExhaustCamHigh2      -       104696
+
+
+CrankHigh                 -     29426236
+LeftExhaustCamHigh1       -        15099
+RightExhaustCamLow2       -        25271
+RightExhaustCamHigh1      -        44887
+LeftExhaustCamLow1        -        39199
+RightExhaustCamLow1       -        49412
+LeftExhaustCamHigh2       -        74277
+CrankLow                  -        91492
+LeftExhaustCamLow2        -          943
+RightExhaustCamHigh2      -       105194
+
+
+CrankHigh                 -     30023303
+LeftExhaustCamHigh1       -        15364
+RightExhaustCamLow2       -        25570
+RightExhaustCamHigh1      -        45673
+LeftExhaustCamLow1        -        59337
+RightExhaustCamLow1       -        50038
+LeftExhaustCamHigh2       -        75303
+CrankLow                  -        91813
+LeftExhaustCamLow2        -        80245
+RightExhaustCamHigh2      -       105153
+
+
+CrankHigh                 -     30624156
+LeftExhaustCamHigh1       -        15264
+RightExhaustCamLow2       -        25506
+RightExhaustCamHigh1      -        45376
+LeftExhaustCamLow1        -        60354
+RightExhaustCamLow1       -        49744
+LeftExhaustCamHigh2       -        74831
+CrankLow                  -        90604
+LeftExhaustCamLow2        -        90887
+RightExhaustCamHigh2      -       104254
+
+
+CrankHigh                 -     31100804
+LeftExhaustCamHigh1       -        15074
+RightExhaustCamLow2       -        36670
+RightExhaustCamHigh1      -        44937
+LeftExhaustCamLow1        -        20249
+RightExhaustCamLow1       -        50017
+LeftExhaustCamHigh2       -        75117
+CrankLow                  -        91414
+LeftExhaustCamLow2        -        95223
+RightExhaustCamHigh2      -       105617
+
+
+CrankHigh                 -     31699172
+LeftExhaustCamHigh1       -        15199
+RightExhaustCamLow2       -       115728
+RightExhaustCamHigh1      -        45289
+LeftExhaustCamLow1        -        34500
+RightExhaustCamLow1       -        72762
+LeftExhaustCamHigh2       -        75969
+CrankLow                  -        92543
+LeftExhaustCamLow2        -       114180
+RightExhaustCamHigh2      -       105479
+
+
+CrankHigh                 -     32180739
+LeftExhaustCamHigh1       -        15103
+RightExhaustCamLow2       -        25344
+RightExhaustCamHigh1      -        45068
+LeftExhaustCamLow1        -        34323
+RightExhaustCamLow1       -        50105
+LeftExhaustCamHigh2       -        75278
+CrankLow                  -        91659
+LeftExhaustCamLow2        -       114311
+RightExhaustCamHigh2      -       106317
+
+
+CrankHigh                 -     32781170
+LeftExhaustCamHigh1       -        15302
+RightExhaustCamLow2       -        20768
+RightExhaustCamHigh1      -        45356
+LeftExhaustCamLow1        -        52316
+RightExhaustCamLow1       -        49863
+LeftExhaustCamHigh2       -        74856
+CrankLow                  -        91117
+LeftExhaustCamLow2        -        79284
+RightExhaustCamHigh2      -       103944
+
+
+CrankHigh                 -     33258732
+LeftExhaustCamHigh1       -        15077
+RightExhaustCamLow2       -        25281
+RightExhaustCamHigh1      -        44933
+LeftExhaustCamLow1        -        57294
+RightExhaustCamLow1       -        50110
+LeftExhaustCamHigh2       -        75326
+CrankLow                  -        92163
+LeftExhaustCamLow2        -        14705
+RightExhaustCamHigh2      -       105834
+
+
+CrankHigh                 -     33855529
+LeftExhaustCamHigh1       -        15095
+RightExhaustCamLow2       -        25449
+RightExhaustCamHigh1      -        45315
+LeftExhaustCamLow1        -        25152
+RightExhaustCamLow1       -        49395
+LeftExhaustCamHigh2       -        74158
+CrankLow                  -        90219
+LeftExhaustCamLow2        -        91098
+RightExhaustCamHigh2      -       105144
+
+
+CrankHigh                 -     34451920
+LeftExhaustCamHigh1       -        15055
+RightExhaustCamLow2       -       114341
+RightExhaustCamHigh1      -        44721
+LeftExhaustCamLow1        -        33448
+RightExhaustCamLow1       -        49487
+LeftExhaustCamHigh2       -        74440
+CrankLow                  -        90642
+LeftExhaustCamLow2        -       115175
+RightExhaustCamHigh2      -       104792
+
+
+CrankHigh                 -     34927002
+LeftExhaustCamHigh1       -        15343
+RightExhaustCamLow2       -        25521
+RightExhaustCamHigh1      -        45726
+LeftExhaustCamLow1        -        35593
+RightExhaustCamLow1       -        50301
+LeftExhaustCamHigh2       -        75485
+CrankLow                  -        91791
+LeftExhaustCamLow2        -       115564
+RightExhaustCamHigh2      -       104656
+
+
+CrankHigh                 -     35526496
+LeftExhaustCamHigh1       -        15205
+RightExhaustCamLow2       -        25668
+RightExhaustCamHigh1      -        45804
+LeftExhaustCamLow1        -        57243
+RightExhaustCamLow1       -        50490
+LeftExhaustCamHigh2       -        75935
+CrankLow                  -        92529
+LeftExhaustCamLow2        -        81328
+RightExhaustCamHigh2      -       106503
+
+
+CrankHigh                 -     36010151
+LeftExhaustCamHigh1       -        15399
+RightExhaustCamLow2       -        25671
+RightExhaustCamHigh1      -        45759
+LeftExhaustCamLow1        -        52438
+RightExhaustCamLow1       -        49942
+LeftExhaustCamHigh2       -        75227
+CrankLow                  -        91622
+LeftExhaustCamLow2        -        12662
+RightExhaustCamHigh2      -       105296
+
+
+CrankHigh                 -     36611375
+LeftExhaustCamHigh1       -        15241
+RightExhaustCamLow2       -        25356
+RightExhaustCamHigh1      -        45006
+LeftExhaustCamLow1        -        20388
+RightExhaustCamLow1       -        50397
+LeftExhaustCamHigh2       -        75822
+CrankLow                  -        92397
+LeftExhaustCamLow2        -        82275
+RightExhaustCamHigh2      -       105453
+
+
+CrankHigh                 -     37210307
+LeftExhaustCamHigh1       -        15014
+RightExhaustCamLow2       -       114063
+RightExhaustCamHigh1      -        44731
+LeftExhaustCamLow1        -        74360
+RightExhaustCamLow1       -        49566
+LeftExhaustCamHigh2       -        74546
+CrankLow                  -        90775
+LeftExhaustCamLow2        -       106559
+RightExhaustCamHigh2      -       105363
+
+
+CrankHigh                 -     37686269
+LeftExhaustCamHigh1       -        15361
+RightExhaustCamLow2       -        25582
+RightExhaustCamHigh1      -        45740
+LeftExhaustCamLow1        -        26415
+RightExhaustCamLow1       -        50002
+LeftExhaustCamHigh2       -        75097
+CrankLow                  -        91365
+LeftExhaustCamLow2        -       106591
+RightExhaustCamHigh2      -       106794
+
+
+CrankHigh                 -     38288761
+LeftExhaustCamHigh1       -        15263
+RightExhaustCamLow2       -       115665
+RightExhaustCamHigh1      -        45200
+LeftExhaustCamLow1        -        44812
+RightExhaustCamLow1       -        50028
+LeftExhaustCamHigh2       -        75810
+CrankLow                  -        92459
+LeftExhaustCamLow2        -         3949
+RightExhaustCamHigh2      -       106841
+
+
+CrankHigh                 -     38771365
+LeftExhaustCamHigh1       -        15336
+RightExhaustCamLow2       -        25588
+RightExhaustCamHigh1      -        45704
+LeftExhaustCamLow1        -        39984
+RightExhaustCamLow1       -        50555
+LeftExhaustCamHigh2       -        75937
+CrankLow                  -        92438
+LeftExhaustCamLow2        -       119093
+RightExhaustCamHigh2      -       105595
+
+
+CrankHigh                 -     39374941
+LeftExhaustCamHigh1       -        15220
+RightExhaustCamLow2       -        25643
+RightExhaustCamHigh1      -        45595
+LeftExhaustCamLow1        -        58510
+RightExhaustCamLow1       -        55109
+LeftExhaustCamHigh2       -        74910
+CrankLow                  -        91180
+LeftExhaustCamLow2        -        80384
+RightExhaustCamHigh2      -       105322
+
+
+CrankHigh                 -     39974926
+LeftExhaustCamHigh1       -        15390
+RightExhaustCamLow2       -        25682
+RightExhaustCamHigh1      -        45878
+LeftExhaustCamLow1        -        57489
+RightExhaustCamLow1       -        75972
+LeftExhaustCamHigh2       -        75657
+CrankLow                  -        91397
+LeftExhaustCamLow2        -        87501
+RightExhaustCamHigh2      -       105114
+
+
+CrankHigh                 -     40455685
+LeftExhaustCamHigh1       -        15080
+RightExhaustCamLow2       -        25163
+RightExhaustCamHigh1      -        44516
+LeftExhaustCamLow1        -        19732
+RightExhaustCamLow1       -        48940
+LeftExhaustCamHigh2       -        73654
+CrankLow                  -        89730
+LeftExhaustCamLow2        -        94490
+RightExhaustCamHigh2      -       103535
+
+
+CrankHigh                 -     41047493
+LeftExhaustCamHigh1       -        15110
+RightExhaustCamLow2       -       114621
+RightExhaustCamHigh1      -        44938
+LeftExhaustCamLow1        -        37523
+RightExhaustCamLow1       -        49733
+LeftExhaustCamHigh2       -        76836
+CrankLow                  -        93603
+LeftExhaustCamLow2        -       117805
+RightExhaustCamHigh2      -       107261
+
+
+CrankHigh                 -     41530614
+LeftExhaustCamHigh1       -        15415
+RightExhaustCamLow2       -        25674
+RightExhaustCamHigh1      -        45778
+LeftExhaustCamLow1        -        31778
+RightExhaustCamLow1       -        83906
+LeftExhaustCamHigh2       -        74868
+CrankLow                  -        91079
+LeftExhaustCamLow2        -       112819
+RightExhaustCamHigh2      -       103037
+
+
+CrankHigh                 -     42127689
+LeftExhaustCamHigh1       -        15158
+RightExhaustCamLow2       -        25173
+RightExhaustCamHigh1      -        44673
+LeftExhaustCamLow1        -        57446
+RightExhaustCamLow1       -        49771
+LeftExhaustCamHigh2       -        74807
+CrankLow                  -        91070
+LeftExhaustCamLow2        -        81552
+RightExhaustCamHigh2      -       106939
+
+
+CrankHigh                 -     42606458
+LeftExhaustCamHigh1       -        15187
+RightExhaustCamLow2       -        25385
+RightExhaustCamHigh1      -        45327
+LeftExhaustCamLow1        -        57019
+RightExhaustCamLow1       -        55548
+LeftExhaustCamHigh2       -        75529
+CrankLow                  -        92166
+LeftExhaustCamLow2        -        15301
+RightExhaustCamHigh2      -       106029
+
+
+CrankHigh                 -     43208837
+LeftExhaustCamHigh1       -        15254
+RightExhaustCamLow2       -        25321
+RightExhaustCamHigh1      -        44987
+LeftExhaustCamLow1        -        25133
+RightExhaustCamLow1       -        70121
+LeftExhaustCamHigh2       -        74021
+CrankLow                  -        90000
+LeftExhaustCamLow2        -        89015
+RightExhaustCamHigh2      -       103135
+
+
+CrankHigh                 -     43799904
+LeftExhaustCamHigh1       -        15078
+RightExhaustCamLow2       -       115541
+RightExhaustCamHigh1      -        45481
+LeftExhaustCamLow1        -        33819
+RightExhaustCamLow1       -        76158
+LeftExhaustCamHigh2       -        74977
+CrankLow                  -        91285
+LeftExhaustCamLow2        -       113682
+RightExhaustCamHigh2      -       105077
+
+
+CrankHigh                 -     44279130
+LeftExhaustCamHigh1       -        14921
+RightExhaustCamLow2       -        25120
+RightExhaustCamHigh1      -        44609
+LeftExhaustCamLow1        -        38409
+RightExhaustCamLow1       -        49445
+LeftExhaustCamHigh2       -        74535
+CrankLow                  -        90820
+LeftExhaustCamLow2        -       119353
+RightExhaustCamHigh2      -       104981
+
+
+CrankHigh                 -     44874173
+LeftExhaustCamHigh1       -        15147
+RightExhaustCamLow2       -        25215
+RightExhaustCamHigh1      -        44827
+LeftExhaustCamLow1        -        60294
+RightExhaustCamLow1       -        50172
+LeftExhaustCamHigh2       -        75309
+CrankLow                  -        91576
+LeftExhaustCamLow2        -        79978
+RightExhaustCamHigh2      -       105018
+
+
+CrankHigh                 -     45472315
+LeftExhaustCamHigh1       -        15202
+RightExhaustCamLow2       -        25419
+RightExhaustCamHigh1      -        45245
+LeftExhaustCamLow1        -        61759
+RightExhaustCamLow1       -        50036
+LeftExhaustCamHigh2       -        75118
+CrankLow                  -        90693
+LeftExhaustCamLow2        -        92683
+RightExhaustCamHigh2      -       104289
+
+
+CrankHigh                 -     45948635
+LeftExhaustCamHigh1       -        14952
+RightExhaustCamLow2       -        25186
+RightExhaustCamHigh1      -        44726
+LeftExhaustCamLow1        -        19926
+RightExhaustCamLow1       -        54634
+LeftExhaustCamHigh2       -        74337
+CrankLow                  -        90615
+LeftExhaustCamLow2        -       100470
+RightExhaustCamHigh2      -       105006
+
+
+CrankHigh                 -     46541877
+LeftExhaustCamHigh1       -        15050
+RightExhaustCamLow2       -       114308
+RightExhaustCamHigh1      -        45120
+LeftExhaustCamLow1        -        43478
+RightExhaustCamLow1       -        55198
+LeftExhaustCamHigh2       -        75028
+CrankLow                  -        91232
+LeftExhaustCamLow2        -         4698
+RightExhaustCamHigh2      -       103579
+
+
+CrankHigh                 -     47017229
+LeftExhaustCamHigh1       -        14832
+RightExhaustCamLow2       -        24993
+RightExhaustCamHigh1      -        44201
+LeftExhaustCamLow1        -        52160
+RightExhaustCamLow1       -        54486
+LeftExhaustCamHigh2       -        74004
+CrankLow                  -        90321
+LeftExhaustCamLow2        -        14714
+RightExhaustCamHigh2      -       103786
+
+
+CrankHigh                 -     47605806
+LeftExhaustCamHigh1       -        14832
+RightExhaustCamLow2       -        25453
+RightExhaustCamHigh1      -        45572
+LeftExhaustCamLow1        -        20392
+RightExhaustCamLow1       -        50398
+LeftExhaustCamHigh2       -        75695
+CrankLow                  -        92040
+LeftExhaustCamLow2        -        88731
+RightExhaustCamHigh2      -       105589
+
+
+CrankHigh                 -     48205257
+LeftExhaustCamHigh1       -        15196
+RightExhaustCamLow2       -       114714
+RightExhaustCamHigh1      -        44751
+LeftExhaustCamLow1        -        29563
+RightExhaustCamLow1       -        49509
+LeftExhaustCamHigh2       -        74319
+CrankLow                  -        90394
+LeftExhaustCamLow2        -       110447
+RightExhaustCamHigh2      -       103372
+
+
+CrankHigh                 -     48679074
+LeftExhaustCamHigh1       -        14877
+RightExhaustCamLow2       -        25079
+RightExhaustCamHigh1      -        44452
+LeftExhaustCamLow1        -        39508
+RightExhaustCamLow1       -        55402
+LeftExhaustCamHigh2       -        75385
+CrankLow                  -        91788
+LeftExhaustCamLow2        -       119361
+RightExhaustCamHigh2      -       105335
+
+
+CrankHigh                 -     49274062
+LeftExhaustCamHigh1       -        15290
+RightExhaustCamLow2       -        25278
+RightExhaustCamHigh1      -        44985
+LeftExhaustCamLow1        -        59770
+RightExhaustCamLow1       -        49943
+LeftExhaustCamHigh2       -        75068
+CrankLow                  -        91345
+LeftExhaustCamLow2        -        80382
+RightExhaustCamHigh2      -       105440
+
+
+CrankHigh                 -     49872693
+LeftExhaustCamHigh1       -        15199
+RightExhaustCamLow2       -        25474
+RightExhaustCamHigh1      -        45160
+LeftExhaustCamLow1        -        61654
+RightExhaustCamLow1       -        55561
+LeftExhaustCamHigh2       -        75645
+CrankLow                  -        92327
+LeftExhaustCamLow2        -        91335
+RightExhaustCamHigh2      -       106112
