@@ -9,7 +9,7 @@ CurveTable * CurveTable::CreateExhaustCamTable()
 {
 	// Intake advance, for comparison               30       30       15        10
 	static float input[] = { MINIMUM_EXAVCS_RPM,  2000.0f, 3000.0f, 4000.0f,  8000.0f };
-	static float output[] = { 0.0f,                  1.0f,    5.0f,   15.0f,    20.0f };
+	static float output[] = { 0.0f,                  1.0f,    1.0f,   15.0f,    20.0f };
 	// With 15 degrees in cruise, (and 30 degrees intake advance), the engine ran rough.
 	// That would be 11 degrees of overlap @ 0.050. So no wonder it was rough!
 

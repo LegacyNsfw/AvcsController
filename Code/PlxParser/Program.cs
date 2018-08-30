@@ -30,7 +30,7 @@ namespace PlxParser
         private static SerialPort OpenPort()
         {
             Console.WriteLine("Opening port.");
-            SerialPort port = new SerialPort("COM8", 19200, Parity.None, 8, StopBits.One);
+            SerialPort port = new SerialPort("COM6", 19200, Parity.None, 8, StopBits.One);
             port.Open();
             Console.WriteLine("Port opened.");
             return port;

@@ -1,12 +1,16 @@
 ///////////////////////////////////////////////////////////////////////////////
+// At 0.006 valve lift:
+//
 // Exhaust AVCS range:
 // Max Advance = Open: 72 before BDC, Close: 12 BTDC, Center: 48 ABDC
 // Max Retard =  Open: 32 before BDC, Close: 28 ATDC, Center: 88 ABDC
 //
 // Non-AVCS:     Open: 55 before BDC, Close: 5 after TDC, Center: 65 ABDC
 //
-// Note that stock cams have 240 degrees duration, so aftermarket cams will
-// expand those open/close numbers somewhat.
+// To do: make the same table with valve events at 0.050 valve lift.
+//
+// Note that stock cams have 240 degrees duration @ 0.006, so aftermarket 
+// cams will expand those open/close numbers somewhat.
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifdef ARDUINO

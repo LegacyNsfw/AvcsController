@@ -4,8 +4,8 @@ Move the feedback updates out of the main loop, just update them when the cam an
 Low-pass filter on target angle?
 	Maybe just for a few seconds after coming out of idle or sync mode
 
-Synchronize at ~3000, log the baseline angle
-	Then hard-code the baseline and skip the sync phase entirely from now on.
+One time: disable PWM, rev at ~3000 for several seconds, log the baseline angle.
+	Then hard-code the baseline and skip the 'sync' phase entirely from now on.
 
 Replace UpdateRollingAverage with an exponential filter
 	https://www.megunolink.com/documentation/arduino-libraries/exponential-filter/

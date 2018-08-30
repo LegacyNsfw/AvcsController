@@ -109,7 +109,6 @@ void setup() {
 	pinMode(A1, INPUT); // crank angle sensor
 	analogWrite(10, 60); // backlight
 	
-	pinMode(A1, INPUT); // analog in from crank sensor
 	pinMode(2, INPUT_PULLUP); // crank
 	pinMode(3, INPUT_PULLUP); // left cam
 	pinMode(11, INPUT_PULLUP); // right cam
