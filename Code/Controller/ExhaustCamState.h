@@ -29,7 +29,7 @@ public:
 
 	// Each cam instance maintains an RPM value so it can be sanity-checked against the others.
 	unsigned Rpm;
-	unsigned SyncCountdown; // May go slightly negative due to race conditions
+	unsigned CalibrationCountdown; // May go slightly negative due to race conditions
 	CycleStates CycleState;
 	unsigned TimeSinceCrankSignal;
 	float Baseline; 
@@ -44,7 +44,7 @@ public:
 		AverageInterval = 0;
 		PulseDuration = 0;
 		Rpm = 0;
-		SyncCountdown = 0;
+		CalibrationCountdown = 0;
 		TimeSinceCrankSignal = 0;
 		Baseline = 0;
 		Angle = 0;
@@ -60,9 +60,9 @@ public:
 	// Clean up if wraparound happened due to a race condition
 	void Process()
 	{
-		if (SyncCountdown > 10000)
+		if (CalibrationCountdown > 10000)
 		{
-			SyncCountdown = 0;
+			CalibrationCountdown = 0;
 		}
 	}
 };

@@ -3,7 +3,7 @@
 class CrankState
 {
 public:
-	unsigned SyncCountdown;
+	unsigned CalibrationCountdown;
 	unsigned Rpm;
 	unsigned AverageInterval;
 	unsigned PulseDuration;
@@ -14,7 +14,7 @@ public:
 
 	CrankState()
 	{
-		SyncCountdown = 0;
+		CalibrationCountdown = 0;
 		Rpm = 0;
 		PulseDuration = 0;
 		PinState = 0;
@@ -28,9 +28,9 @@ public:
 	void Process()
 	{
 		// Clean up if wraparound happened due to a race condition
-		if (SyncCountdown > 10000)
+		if (CalibrationCountdown > 10000)
 		{
-			SyncCountdown = 0;
+			CalibrationCountdown = 0;
 		}
 	}
 };

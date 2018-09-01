@@ -225,7 +225,7 @@ public:
 			millis(),
 			mode.GetMode(),
 			ErrorCount,
-			SyncErrorCount,
+			InitializationErrorCount,
 
 			// L1
 			LeftExhaustCam.Rpm,
@@ -233,7 +233,7 @@ public:
 
 			// L2 
 			LeftExhaustCam.PulseDuration,
-			LeftExhaustCam.SyncCountdown,
+			LeftExhaustCam.CalibrationCountdown,
 
 			// R1
 			RightExhaustCam.Rpm,
@@ -241,7 +241,7 @@ public:
 
 			// R2
 			RightExhaustCam.PulseDuration,
-			RightExhaustCam.SyncCountdown,
+			RightExhaustCam.CalibrationCountdown,
 
 			// C
 			Crank.Rpm,

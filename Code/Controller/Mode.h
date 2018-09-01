@@ -12,16 +12,16 @@ class Mode
 {
 private:
 	int currentMode;
-	void BeginSynchronizing();
+	void BeginCalibrating();
 	void BeginWarming();
 	void UpdateWarming();
 	void BeginRunning();
-	int IsSynchronized();
+	int IsCalibrated();
 
 public:
 	// Monitor this many revolutions before we consider ourselves synchronized.
-	static const unsigned SyncCountdown = 150; // In theory, 250 would give 10 seconds at 1500 RPM, 6 seconds at 2500. In practice...
-	static const int Synchronizing = 1;
+	static const unsigned CalibrationCountdown = 150; // In theory, 250 would give 10 seconds at 1500 RPM, 6 seconds at 2500. In practice...
+	static const int Calibrating = 1;
 	static const int Warming = 2;
 	static const int Running = 3;
 

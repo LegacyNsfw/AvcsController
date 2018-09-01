@@ -204,7 +204,7 @@ byte* PlxProcessor::FillOutputBuffer()
 	// The +64 corresponds to how the value is scaled by the PLX protocol.
 
 	//if (Crank.Rpm < MAXIMUM_BASELINE_RPM)
-	if (mode.GetMode() == Mode::Synchronizing)
+	if (mode.GetMode() == Mode::Calibrating)
 	{
 		AddSensorBytes(PlxTimingAddress, 0, LeftExhaustCam.Baseline + 64);
 		AddSensorBytes(PlxTimingAddress, 1, RightExhaustCam.Baseline + 64);

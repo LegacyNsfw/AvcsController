@@ -41,9 +41,9 @@ ExhaustCamState RightExhaustCam(0);
 ///////////////////////////////////////////////////////////////////////////////
 /*void ExhaustCamTiming::BeginPulse(unsigned camInterval, unsigned crankInterval)
 {
-	if (SyncCountdown > 0)
+	if (CalibrationCountdown > 0)
 	{
-		SyncCountdown--;
+		CalibrationCountdown--;
 	}
 
 	UpdateRollingAverage(&AverageInterval, camInterval);
@@ -118,12 +118,12 @@ void ExhaustCamState::BeginPulse(unsigned camInterval, unsigned crankInterval)
 	}
 
 
-	// The first part of the sync countdown period is just seeding the key values.
-	if (SyncCountdown > 0)
+	// The first part of the calibration countdown period is just seeding the key values.
+	if (CalibrationCountdown > 0)
 	{
-		SyncCountdown--;
+		CalibrationCountdown--;
 
-		if (SyncCountdown > (Mode::SyncCountdown * 0.8f))
+		if (CalibrationCountdown > (Mode::CalibrationCountdown * 0.8f))
 		{
 			// Seed the average value - it'll be too high or too low, but it's something to start with.
 			AverageInterval = camInterval;
@@ -153,7 +153,7 @@ void ExhaustCamState::BeginPulse(unsigned camInterval, unsigned crankInterval)
 		float angle = ((float)TimeSinceCrankSignal) / ticksPerDegree;
 		
 		// Update the baseline cam angle while solenoids are disabled.
-		if (SyncCountdown > 0)
+		if (CalibrationCountdown > 0)
 		{
 			UpdateRollingAverage(&Baseline, angle, 1);
 			Angle = 0;
@@ -218,7 +218,7 @@ void ExhaustCamState::EndPulse(unsigned camInterval)
 bool TestExhaustCamPulseSeries(unsigned rpm)
 {
 	ExhaustCamState test(1);
-	test.SyncCountdown = Mode::SyncCountdown;
+	test.CalibrationCountdown = Mode::CalibrationCountdown;
 
 	float revsPerMinute = rpm;
 	float revsPerSecond = revsPerMinute / 60;
@@ -227,7 +227,7 @@ bool TestExhaustCamPulseSeries(unsigned rpm)
 	unsigned clockTicksPerCamRevolution = (unsigned)(clockTicksPerCrankRevolution * 2);
 	unsigned duration = clockTicksPerCamRevolution / 2;
 	
-	for (int i = 0; i < Mode::SyncCountdown * 2; i++)
+	for (int i = 0; i < Mode::CalibrationCountdown * 2; i++)
 	{
 		test.BeginPulse(duration + 1, (duration * 3) / 2);
 		test.BeginPulse(duration - 1, duration / 2);

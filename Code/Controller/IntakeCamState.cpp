@@ -27,9 +27,9 @@ IntakeCamState RightIntakeCam(0);
 /*
 void IntakeCamState::BeginPulse(unsigned camInterval, unsigned crankInterval)
 {
-	if (SyncCountdown > 0)
+	if (CalibrationCountdown > 0)
 	{
-		SyncCountdown--;
+		CalibrationCountdown--;
 	}
 
 	UpdateRollingAverage(&AverageInterval, camInterval);
@@ -52,15 +52,15 @@ void IntakeCamState::BeginPulse(unsigned camInterval, unsigned crankInterval)
 {
 	PulseState = 1;
 
-	// Spend half of the sync countdown period just establishing the average interval.
-	// For the second half of the sync countdown period, compute the rest of the values.
+	// Spend half of the calibration countdown period just establishing the average interval.
+	// For the second half of the calibration countdown period, compute the rest of the values.
 	//
-	// TODO: replace sync countdown with "RPM > 500 for 5 seconds"
-	if (SyncCountdown > 0)
+	// TODO: replace calibration countdown with "RPM > 500 for 5 seconds"
+	if (CalibrationCountdown > 0)
 	{
-		SyncCountdown--;
+		CalibrationCountdown--;
 
-		if (SyncCountdown > ((4 * Mode::SyncCountdown) / 5)) // > 72
+		if (CalibrationCountdown > ((4 * Mode::CalibrationCountdown) / 5)) // > 72
 		{
 			// Seed the average value - it'll be too high or too low, but it'll at least be within 50%.
 			CountdownState = CountdownStates::Reset;
@@ -72,19 +72,19 @@ void IntakeCamState::BeginPulse(unsigned camInterval, unsigned crankInterval)
 			IntervalState = 0;
 			return;
 		}
-		else if (SyncCountdown > ((3 * Mode::SyncCountdown) / 5)) // > 54
+		else if (CalibrationCountdown > ((3 * Mode::CalibrationCountdown) / 5)) // > 54
 		{
 			// Smooth the average pulse length to a reasonable value.
 			CountdownState = CountdownStates::Countdown1;
 			UpdateRollingAverage(&AverageInterval, camInterval);
 			return;
 		}
-		else if (SyncCountdown > ((2 * Mode::SyncCountdown) / 5)) // > 36
+		else if (CalibrationCountdown > ((2 * Mode::CalibrationCountdown) / 5)) // > 36
 		{
 			// Seed the long/short metrics
 			CountdownState = CountdownStates::Initialize1;
 		}
-		else if (SyncCountdown > ((1 * Mode::SyncCountdown) / 5)) // > 18
+		else if (CalibrationCountdown > ((1 * Mode::CalibrationCountdown) / 5)) // > 18
 		{
 			// Smooth all metrics
 			CountdownState = CountdownStates::Countdown2;
@@ -97,7 +97,7 @@ void IntakeCamState::BeginPulse(unsigned camInterval, unsigned crankInterval)
 	}
 	else
 	{
-		// Enable long/short pulse sync checking
+		// Enable long/short pulse calibration checking
 		CountdownState = CountdownStates::Run;
 	}
 
@@ -143,16 +143,16 @@ void IntakeCamState::BeginPulse(unsigned camInterval, unsigned crankInterval)
 		retard = retard - Baseline;
 		UpdateRollingAverage(&Angle, retard);
 
-		// Validate long/short pulse synchronization
+		// Validate long/short pulse calibration
 		if (CountdownState == CountdownStates::Run)
 		{
 			if (IntervalState == 0)
 			{
-				mode.Fail(Left ? "L Sync Long 0" : "R Sync Long 0");
+				mode.Fail(Left ? "L Cal Long 0" : "R Cal Long 0");
 			}
 			else if (IntervalState == 1)
 			{
-				mode.Fail(Left ? "L Sync Long 1" : "R Sync Long 1");
+				mode.Fail(Left ? "L Cal Long 1" : "R Cal Long 1");
 			}
 		}
 
@@ -171,7 +171,7 @@ void IntakeCamState::BeginPulse(unsigned camInterval, unsigned crankInterval)
 			UpdateRollingAverage(&ShortInterval, camInterval);
 		}
 
-		// Validate long/short pulse synchronization
+		// Validate long/short pulse calibration
 		if (IntervalState == 0)
 		{
 			IntervalState = 1;
@@ -182,7 +182,7 @@ void IntakeCamState::BeginPulse(unsigned camInterval, unsigned crankInterval)
 		}
 		else if (CountdownState == CountdownStates::Run)
 		{
-			mode.Fail(Left ? "Left Sync Short" : "Right Sync Short");
+			mode.Fail(Left ? "Left Cal Short" : "Right Cal Short");
 		}
 	}
 }
@@ -218,7 +218,7 @@ void IntakeCamState::EndPulse(unsigned camInterval)
 bool TestIntakeCamPulseSeries(unsigned rpm)
 {
 	IntakeCamState test(1);
-	test.SyncCountdown = Mode::SyncCountdown;
+	test.CalibrationCountdown = Mode::CalibrationCountdown;
 
 	float revsPerMinute = rpm;
 	float revsPerSecond = revsPerMinute / 60;
@@ -228,7 +228,7 @@ bool TestIntakeCamPulseSeries(unsigned rpm)
 	unsigned shortDuration = clockTicksPerCamRevolution / 4;
 	shortDuration /= 2;
 	
-	for (int i = 0; i < Mode::SyncCountdown * 2; i++)
+	for (int i = 0; i < Mode::CalibrationCountdown * 2; i++)
 	{
 		test.BeginPulse(shortDuration, (shortDuration / 2) + shortDuration);
 		test.BeginPulse(shortDuration, (shortDuration / 2) + shortDuration + shortDuration);

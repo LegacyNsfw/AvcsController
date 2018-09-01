@@ -24,8 +24,8 @@ int testMode;
 void Mode::Initialize()
 {
 	ErrorCount = 0;
-	SyncErrorCount = 0;
-	this->BeginSynchronizing();
+	InitializationErrorCount = 0;
+	this->BeginCalibrating();
 	ErrorScreen->Right = NULL;
 }
 
@@ -36,15 +36,15 @@ void Mode::Update()
 {
 	switch (this->currentMode)
 	{
-	case Mode::Synchronizing:
+	case Mode::Calibrating:
 	
 		if (Crank.Rpm < MINIMUM_EXAVCS_RPM)
 		{
-			this->BeginSynchronizing();
+			this->BeginCalibrating();
 			return;
 		}
 
-		if (this->IsSynchronized())
+		if (this->IsCalibrated())
 		{
 			this->BeginWarming();
 			strncpy(LastErrorMessage, ErrorMessage, DisplayWidth);
@@ -71,19 +71,19 @@ void Mode::Fail(const char * message)
 	Serial.println(message);
 #endif
 
-	// Expect failures during sync - just try to re-sync
-	// Note that the calls to BeginSynchronizing need to happen below this 
-	// conditional because they will reset the mode to Synchronizing.
-	if (this->currentMode == Mode::Synchronizing)
+	// Expect failures during calibration - just try to re-calibrate
+	// Note that the calls to BeginCalibrating need to happen below this 
+	// conditional because they will reset the mode to Calibrating.
+	if (this->currentMode == Mode::Calibrating)
 	{
-		SyncErrorCount++;
-		BeginSynchronizing();
+		InitializationErrorCount++;
+		BeginCalibrating();
 		return;
 	}
 	else
 	{
 		ErrorCount++;
-		BeginSynchronizing();
+		BeginCalibrating();
 	}
 		
 	if (ErrorCount > 100)
@@ -121,17 +121,17 @@ void Mode::Fail(const char * message)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Begin synchronizing cam and crank sensors and state
+// Begin calibrating cam and crank timing
 ///////////////////////////////////////////////////////////////////////////////
-void Mode::BeginSynchronizing()
+void Mode::BeginCalibrating()
 {
 	ClearScreen();
-	this->currentMode = Mode::Synchronizing;
+	this->currentMode = Mode::Calibrating;
 
 	// Exhaust cams have two pulses per revolution.
-	LeftExhaustCam.SyncCountdown = SyncCountdown * 2;
-	RightExhaustCam.SyncCountdown = SyncCountdown * 2;
-	Crank.SyncCountdown = SyncCountdown;
+	LeftExhaustCam.CalibrationCountdown = CalibrationCountdown * 2;
+	RightExhaustCam.CalibrationCountdown = CalibrationCountdown * 2;
+	Crank.CalibrationCountdown = CalibrationCountdown;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -153,14 +153,14 @@ void Mode::BeginRunning()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Indicates whether the cam and crank states are synchronized
+// Indicates whether the cam and crank states are calibrated
 ///////////////////////////////////////////////////////////////////////////////
-int Mode::IsSynchronized()
+int Mode::IsCalibrated()
 {
 	return
-		LeftExhaustCam.SyncCountdown == 0 &&
-		RightExhaustCam.SyncCountdown == 0 &&
-		Crank.SyncCountdown == 0;
+		LeftExhaustCam.CalibrationCountdown == 0 &&
+		RightExhaustCam.CalibrationCountdown == 0 &&
+		Crank.CalibrationCountdown == 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -183,26 +183,26 @@ void Mode::ClearScreen()
 // ############################################################################
 
 ///////////////////////////////////////////////////////////////////////////////
-// Ensure that the right stuff happened to after a call to BeginSynchronizing
+// Ensure that the right stuff happened to after a call to BeginCalibrating
 ///////////////////////////////////////////////////////////////////////////////
-bool ValidateResync()
+bool ValidateRecalibrate()
 {
-	if (!CompareUnsigned(LeftExhaustCam.SyncCountdown, Mode::SyncCountdown * 2, "Right.SC"))
+	if (!CompareUnsigned(LeftExhaustCam.CalibrationCountdown, Mode::CalibrationCountdown * 2, "Right.SC"))
 	{
 		return false;
 	}
 
-	if (!CompareUnsigned(RightExhaustCam.SyncCountdown, Mode::SyncCountdown * 2, "Right.SC"))
+	if (!CompareUnsigned(RightExhaustCam.CalibrationCountdown, Mode::CalibrationCountdown * 2, "Right.SC"))
 	{
 		return false;
 	}
 
-	if (!CompareUnsigned(Crank.SyncCountdown, Mode::SyncCountdown, "Crank.SC"))
+	if (!CompareUnsigned(Crank.CalibrationCountdown, Mode::CalibrationCountdown, "Crank.SC"))
 	{
 		return false;
 	}
 
-	if (!CompareUnsigned(mode.GetMode(), Mode::Synchronizing, "Mode.1"))
+	if (!CompareUnsigned(mode.GetMode(), Mode::Calibrating, "Mode.1"))
 	{
 		return false;
 	}
@@ -222,7 +222,7 @@ bool TestInitializeMode()
 		return false;
 	}
 
-	return ValidateResync();
+	return ValidateRecalibrate();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -234,9 +234,9 @@ bool TestTransToWarming()
 
 	Crank.Rpm = MINIMUM_EXAVCS_RPM + 100;
 
-	LeftExhaustCam.SyncCountdown = 0;
-	RightExhaustCam.SyncCountdown = 0;
-	Crank.SyncCountdown = 0;
+	LeftExhaustCam.CalibrationCountdown = 0;
+	RightExhaustCam.CalibrationCountdown = 0;
+	Crank.CalibrationCountdown = 0;
 	
 	mode.Update();
 
@@ -277,15 +277,15 @@ bool TestTransToRunning()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Validate a failure during synchronization
+// Validate a failure during calibration
 ///////////////////////////////////////////////////////////////////////////////
-bool TestFailSync()
+bool TestFailCalibration()
 {
 	TestInitializeMode();
 
-	LeftExhaustCam.SyncCountdown = 20;
-	RightExhaustCam.SyncCountdown = 20;
-	Crank.SyncCountdown = 20;
+	LeftExhaustCam.CalibrationCountdown = 20;
+	RightExhaustCam.CalibrationCountdown = 20;
+	Crank.CalibrationCountdown = 20;
 
 	mode.Fail("Testing");
 
@@ -294,12 +294,12 @@ bool TestFailSync()
 		return false;
 	}
 
-	if (!CompareUnsigned(SyncErrorCount, 1, "SyncErr.2"))
+	if (!CompareUnsigned(InitializationErrorCount, 1, "InitErr.2"))
 	{
 		return false;
 	}
 
-	return ValidateResync();
+	return ValidateRecalibrate();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -316,12 +316,12 @@ bool TestFailWarming()
 		return false;
 	}
 
-	if (!CompareUnsigned(SyncErrorCount, 0, "SyncErr.3"))
+	if (!CompareUnsigned(InitializationErrorCount, 0, "InitErr.3"))
 	{
 		return false;
 	}
 
-	return ValidateResync();
+	return ValidateRecalibrate();
 
 }
 
@@ -339,14 +339,14 @@ bool TestFailRunning()
 		return false;
 	}
 
-	if (!CompareUnsigned(SyncErrorCount, 0, "SyncErr.3"))
+	if (!CompareUnsigned(InitializationErrorCount, 0, "InitErr.3"))
 	{
 		return false;
 	}
 
 	// TODO: Validate the appended error screen
 
-	return ValidateResync();
+	return ValidateRecalibrate();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -381,7 +381,7 @@ void SelfTestMode()
 	InvokeTest(InitializeMode);
 	InvokeTest(TransToWarming);
 	InvokeTest(TransToRunning);
-	InvokeTest(FailSync);
+	InvokeTest(FailCalibration);
 	InvokeTest(FailWarming);
 	InvokeTest(FailRunning);
 	testMode = 0;

@@ -35,7 +35,7 @@ EXTERN char LastErrorMessage[DisplayWidth];
 EXTERN char FailureMessage[100];
 
 // For debugging/diagnostics
-EXTERN unsigned SyncErrorCount;
+EXTERN unsigned InitializationErrorCount;
 EXTERN unsigned ErrorCount;
 EXTERN unsigned DebugLeft;
 EXTERN unsigned DebugCrank;

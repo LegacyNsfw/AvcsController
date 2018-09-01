@@ -17,15 +17,15 @@
 // screen, and other users of MenuBuilder do not, so it doesn't belong in the
 // MenuBuilder interface.
 ///////////////////////////////////////////////////////////////////////////////
-Screen *ErrorScreen = new TwoValueScreen("RunErr  SyncErr", &ErrorCount, &SyncErrorCount);
+Screen *ErrorScreen = new TwoValueScreen("RunErr  InitErr", &ErrorCount, &InitializationErrorCount);
 
 Screen* MenuBuilder::BuildMenu()
 {
-	Screen *syncScreen = new ThreeValueScreen(
-		"Synchronizing",
-		&LeftExhaustCam.SyncCountdown,
-		&Crank.SyncCountdown,
-		&RightExhaustCam.SyncCountdown);
+	Screen *calibrationScreen = new ThreeValueScreen(
+		"Calibrating",
+		&LeftExhaustCam.CalibrationCountdown,
+		&Crank.CalibrationCountdown,
+		&RightExhaustCam.CalibrationCountdown);
 
 	Screen *warmingScreen = new SingleValueScreen(
 		"Warming",
@@ -44,7 +44,7 @@ Screen* MenuBuilder::BuildMenu()
 		&RightCamError);
 
 	Screen* MainRow[] = {
-		new MainScreen(&mode, syncScreen, warmingScreen, rpmScreen),
+		new MainScreen(&mode, calibrationScreen, warmingScreen, rpmScreen),
 		new SingleValueScreen("Update Rate", &IterationsPerSecond),
 		new ThreeValueScreen("Timeouts", &LeftExhaustCam.Timeout, &Crank.Timeout, &RightExhaustCam.Timeout),
 		new ThreeValueScreen("DbgL DbgC DbgR", &DebugLeft, &DebugCrank, &DebugRight),

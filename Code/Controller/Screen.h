@@ -315,7 +315,7 @@ public:
 
 		switch (_mode->GetMode())
 		{
-		case Mode::Synchronizing:
+		case Mode::Calibrating:
 			this->_syncScreen->Update();
 			return;
 

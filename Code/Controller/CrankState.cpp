@@ -14,12 +14,12 @@ void CrankState::BeginPulse(unsigned elapsed)
 
 	Crank.PulseState = 1;
 
-	if (SyncCountdown > 0)
+	if (CalibrationCountdown > 0)
 	{
-		SyncCountdown--;
+		CalibrationCountdown--;
 
 		// Seed the average
-		if (SyncCountdown > (Mode::SyncCountdown * 0.8f))
+		if (CalibrationCountdown > (Mode::CalibrationCountdown * 0.8f))
 		{
 			AverageInterval = elapsed;
 		}
@@ -37,7 +37,7 @@ void CrankState::EndPulse(unsigned interval)
 
 	Crank.PulseState = 0;
 
-	if (SyncCountdown > (Mode::SyncCountdown * 0.8f))
+	if (CalibrationCountdown > (Mode::CalibrationCountdown * 0.8f))
 	{
 		PulseDuration = interval;
 	}
