@@ -4,9 +4,9 @@ Move the feedback updates out of the main loop, just update them when the cam an
 Low-pass filter on target angle?
 	Maybe just for a few seconds after coming out of idle or sync mode
 
-Replace UpdateRollingAverage with an exponential filter
-	https://www.megunolink.com/documentation/arduino-libraries/exponential-filter/
-	value = (weight * newvalue)) + ((1 - weight) * oldValue)
+Rolling average weight should vary by RPM
+	Might allow for keeping AVCS active at idle
+	Should avoid stumbling when RPM crosses the engagement threshold
 
 Revise older classes to use interface-style class declarations
 	ScreenNavigator

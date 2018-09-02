@@ -23,15 +23,7 @@ template<typename T> void UpdateRollingAverage(T *average, T newValue, float wei
 	*average = (T) (weight * newValue) + ((1 - weight) * *average);
 }
 
-float GetRollingAverageWeight(int rpm)
-{
-	if (rpm > 2000)
-	{
-		return 1.0f;
-	}
-
-	return 0.1f;
-}
+float GetRollingAverageWeight(int rpm);
 
 ///////////////////////////////////////////////////////////////////////////////
 // Self-test the rolling-average code
