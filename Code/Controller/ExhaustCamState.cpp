@@ -26,7 +26,10 @@
 #include "SelfTest.h"
 #include "IntervalRecorder.h"
 
+// Do not change these at run-time! 
+// See comments in Controller.ino for more information.
 extern int onlyMeasureBaseline;
+extern int useStaticBaseline;
 
 int LeftCamDurationDiagnosticPin = 24;
 int RightCamDurationDiagnosticPin = 25;

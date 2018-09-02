@@ -109,8 +109,6 @@ pwm<pwm_pin::PWML2_PC6> LeftSolenoid; // pin 38, yellow, driver side
 // Period is defined in hundredths of a microsecond
 #define PWM_PERIOD 333 * 1000
 
-float DebugSolenoidDuty;
-
 ///////////////////////////////////////////////////////////////////////////////
 // The setup function runs once when you press reset or power the board.
 ///////////////////////////////////////////////////////////////////////////////
@@ -209,8 +207,6 @@ void loop()
 		ratio = (baseDuty + RightFeedback.Output) / 100.0f;
 		duty_float = PWM_PERIOD * ratio;
 		RightSolenoid.set_duty((uint32_t)duty_float);
-
-		DebugSolenoidDuty = RightFeedback.Output + baseDuty;
 	}
 	else
 	{
