@@ -186,7 +186,7 @@ byte* PlxProcessor::FillOutputBuffer()
 	AddByte(0x80);
 //	AddSensorBytes(PlxFluidTempAddress, 0, OilTemperature);
 
-	//AddSensorBytes(PlxRpmAddress, PlxCrankRpmInstance, (int) ((float)Crank.Rpm / 19.55f));
+	AddSensorBytes(PlxRpmAddress, PlxCrankRpmInstance, (int) ((float)Crank.Rpm / 19.55f));
 	//AddSensorBytes(PlxRpmAddress, PlxLeftRpmInstance, LeftExhaustCam.Rpm);
 	//AddSensorBytes(PlxRpmAddress, PlxRightRpmInstance, RightExhaustCam.Rpm);
 	
@@ -197,7 +197,7 @@ byte* PlxProcessor::FillOutputBuffer()
 
 	//AddSensorBytes(PlxTimingAddress, 2, LeftFeedback.Output + 64);
 //	AddSensorBytes(PlxTimingAddress, 2, RightFeedback.Output + 64);
-	//AddSensorBytes(PlxTimingAddress, 2, CamTargetAngle + 64);
+	AddSensorBytes(PlxTimingAddress, 2, CamTargetAngle + 64);
 
 //	AddSensorBytes(PlxDutyAddress, PlxLeftDutyInstance, RightFeedback.Output * 10.23);
 
@@ -207,12 +207,12 @@ byte* PlxProcessor::FillOutputBuffer()
 	if (mode.GetMode() == Mode::Calibrating)
 	{
 		AddSensorBytes(PlxTimingAddress, 0, LeftExhaustCam.Baseline + 64);
-		AddSensorBytes(PlxTimingAddress, 1, RightExhaustCam.Baseline + 64);
+//		AddSensorBytes(PlxTimingAddress, 1, RightExhaustCam.Baseline + 64);
 	}
 	else
 	{
 		AddSensorBytes(PlxTimingAddress, 0, LeftExhaustCam.Angle + 64);
-		AddSensorBytes(PlxTimingAddress, 1, RightExhaustCam.Angle + 64);
+//		AddSensorBytes(PlxTimingAddress, 1, RightExhaustCam.Angle + 64);
 	}
 	
 //	AddSensorBytes(PlxDutyAddress, PlxLeftDutyInstance, LeftFeedback.Output * 10.23);
@@ -220,8 +220,8 @@ byte* PlxProcessor::FillOutputBuffer()
 
 	float baseDuty = 0; //  45.0f;
 	AddSensorBytes(PlxTimingAddress, PlxLeftDutyInstance, LeftFeedback.Output + 64 + baseDuty);
-	AddSensorBytes(PlxTimingAddress, PlxRightDutyInstance, RightFeedback.Output + 64 + baseDuty);
-//	AddSensorBytes(PlxTimingAddress, PlxRightDutyInstance, DebugSolenoidDuty + 64);
+//	AddSensorBytes(PlxTimingAddress, PlxRightDutyInstance, RightFeedback.Output + 64 + baseDuty);
+
 #endif // !SIMULATOR
 
 	AddByte(0x40);
