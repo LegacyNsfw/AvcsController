@@ -14,7 +14,6 @@ private:
 	int currentMode;
 	void BeginCalibrating();
 	void BeginWarming();
-	void UpdateWarming();
 	void BeginRunning();
 	int IsCalibrated();
 
