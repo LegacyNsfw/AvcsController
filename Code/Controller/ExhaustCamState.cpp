@@ -137,7 +137,7 @@ void ExhaustCamState::BeginPulse(unsigned camInterval, unsigned crankInterval)
 	}
 
 	// Cam interval is only used to determine RPM.
-	UpdateRollingAverage(&AverageInterval, camInterval, 0);
+	UpdateRollingAverage(&AverageInterval, camInterval, 1);
 
 	// Set/update TimeSinceCrankSignal
 	if (CycleState == CycleStates::Pulse1)
@@ -149,7 +149,7 @@ void ExhaustCamState::BeginPulse(unsigned camInterval, unsigned crankInterval)
 		unsigned ticksPerCamRevolution = AverageInterval * 2;
 		unsigned camRpm = TicksPerMinute / ticksPerCamRevolution;
 		unsigned crankRpm = camRpm * 2;
-		UpdateRollingAverage(&Rpm, crankRpm, 0);
+		UpdateRollingAverage(&Rpm, crankRpm, 1);
 	
 		// Crank interval is used to determine cam position.
 		UpdateRollingAverage(&TimeSinceCrankSignal, crankInterval, 1);
@@ -167,11 +167,12 @@ void ExhaustCamState::BeginPulse(unsigned camInterval, unsigned crankInterval)
 				// for about 15 seconds, and then using Excel to average the values.
 				if (this->Left)
 				{
-					Baseline = 131.2145;
+					Baseline = 131.2145; 
 				}
 				else
 				{
-					Baseline = 41.0733;
+					//Baseline = 40.9733; // Subtracted 0.1 since it never flickered "-1" at idle.
+					Baseline = 41.1733; // Added 0.1 since it never flickered "-1" at idle.
 				}
 
 				// Sanity check: Compare the static baselines to measured baselines.

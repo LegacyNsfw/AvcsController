@@ -11,6 +11,17 @@
 #include "RollingAverage.h"
 #include "SelfTest.h"
 
+
+float GetRollingAverageWeight(int rpm)
+{
+	if (rpm > 2000)
+	{
+		return 1.0f;
+	}
+
+	return 0.1f;
+}
+
 // ############################################################################
 // ############################################################################
 //
@@ -25,17 +36,17 @@
 bool TestAverageRising()
 {
 	int average = 1000;
-	UpdateRollingAverage(&average, 1000, 4);
-	UpdateRollingAverage(&average, 1005, 4);
-	UpdateRollingAverage(&average, 1010, 4);
-	UpdateRollingAverage(&average, 1015, 4);
-	UpdateRollingAverage(&average, 1020, 4);
-	UpdateRollingAverage(&average, 1025, 4);
-	UpdateRollingAverage(&average, 1030, 4);
-	UpdateRollingAverage(&average, 1035, 4);
-	UpdateRollingAverage(&average, 1040, 4);
-	UpdateRollingAverage(&average, 1045, 4);
-	UpdateRollingAverage(&average, 1050, 4);
+	UpdateRollingAverage(&average, 1000, 0.25);
+	UpdateRollingAverage(&average, 1005, 0.25);
+	UpdateRollingAverage(&average, 1010, 0.25);
+	UpdateRollingAverage(&average, 1015, 0.25);
+	UpdateRollingAverage(&average, 1020, 0.25);
+	UpdateRollingAverage(&average, 1025, 0.25);
+	UpdateRollingAverage(&average, 1030, 0.25);
+	UpdateRollingAverage(&average, 1035, 0.25);
+	UpdateRollingAverage(&average, 1040, 0.25);
+	UpdateRollingAverage(&average, 1045, 0.25);
+	UpdateRollingAverage(&average, 1050, 0.25);
 
 	// The specific value here is not critical. It can change with different 
 	// smoothing methods, but it is tested to ensure that changes are made
@@ -43,7 +54,7 @@ bool TestAverageRising()
 	// With a 4/1 ratio, the value here will be 1030.
 	// With 1/1, 1045.
 	// With 1/2, 1047
-	return CompareUnsigned(average, 1030, "Rising");
+	return CompareUnsigned(average, 1033, "Rising");
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -53,22 +64,22 @@ bool TestAverageFalling()
 {
 	int average = 1000;
 
-	UpdateRollingAverage(&average, 1000, 4);
-	UpdateRollingAverage(&average, 995, 4);
-	UpdateRollingAverage(&average, 990, 4);
-	UpdateRollingAverage(&average, 985, 4);
-	UpdateRollingAverage(&average, 980, 4);
-	UpdateRollingAverage(&average, 975, 4);
-	UpdateRollingAverage(&average, 970, 4);
-	UpdateRollingAverage(&average, 965, 4);
-	UpdateRollingAverage(&average, 960, 4);
-	UpdateRollingAverage(&average, 955, 4);
-	UpdateRollingAverage(&average, 950, 4);
+	UpdateRollingAverage(&average, 1000, 0.25);
+	UpdateRollingAverage(&average, 995, 0.25);
+	UpdateRollingAverage(&average, 990, 0.25);
+	UpdateRollingAverage(&average, 985, 0.25);
+	UpdateRollingAverage(&average, 980, 0.25);
+	UpdateRollingAverage(&average, 975, 0.25);
+	UpdateRollingAverage(&average, 970, 0.25);
+	UpdateRollingAverage(&average, 965, 0.25);
+	UpdateRollingAverage(&average, 960, 0.25);
+	UpdateRollingAverage(&average, 955, 0.25);
+	UpdateRollingAverage(&average, 950, 0.25);
 
 	// With 4/1 smoothing, the result will be 966.
 	// With 1/1, 954.
 	// With 1/2, 952.
-	return CompareUnsigned(average, 966, "Falling");
+	return CompareUnsigned(average, 962, "Falling");
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -77,16 +88,16 @@ bool TestAverageFalling()
 bool TestAverageSmoothing()
 {
 	int average = 1000;
-	UpdateRollingAverage(&average, 1000, 4);
-	UpdateRollingAverage(&average, 1005, 4);
-	UpdateRollingAverage(&average, 1010, 4);
-	UpdateRollingAverage(&average, 1005, 4);
-	UpdateRollingAverage(&average, 1000, 4);
-	UpdateRollingAverage(&average, 1005, 4);
-	UpdateRollingAverage(&average, 1010, 4);
-	UpdateRollingAverage(&average, 1005, 4);
-	UpdateRollingAverage(&average, 1000, 4);
-	UpdateRollingAverage(&average, 1005, 4);
+	UpdateRollingAverage(&average, 1000, 0.25);
+	UpdateRollingAverage(&average, 1005, 0.25);
+	UpdateRollingAverage(&average, 1010, 0.25);
+	UpdateRollingAverage(&average, 1005, 0.25);
+	UpdateRollingAverage(&average, 1000, 0.25);
+	UpdateRollingAverage(&average, 1005, 0.25);
+	UpdateRollingAverage(&average, 1010, 0.25);
+	UpdateRollingAverage(&average, 1005, 0.25);
+	UpdateRollingAverage(&average, 1000, 0.25);
+	UpdateRollingAverage(&average, 1005, 0.25);
 	
 	// With 4/1 smoothing, the result will be 1001.
 	// With 1/1, 1003.

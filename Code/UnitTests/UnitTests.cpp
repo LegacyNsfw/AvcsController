@@ -16,6 +16,9 @@ Screen *ErrorScreen = new Screen();
 const unsigned TicksPerSecond = 1000 * 1000;
 const unsigned TicksPerMinute = TicksPerSecond * 60;;
 
+int onlyMeasureBaseline = 0;
+int useStaticBaseline = 0;
+
 #define NUM_TIMERS 9
 
 #define VARIANT_MCK			84000000

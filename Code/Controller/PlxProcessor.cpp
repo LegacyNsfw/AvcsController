@@ -377,6 +377,8 @@ bool TestSendReceive()
 	Crank.Rpm = 0;
 	LeftExhaustCam.Rpm = 0;
 	RightExhaustCam.Rpm = 0;
+
+	return true;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
