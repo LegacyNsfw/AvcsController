@@ -26,6 +26,11 @@
 #include "SelfTest.h"
 #include "IntervalRecorder.h"
 
+// Do not change these at run-time! 
+// See comments in Controller.ino for more information.
+extern int onlyMeasureBaseline;
+extern int useStaticBaseline;
+
 int LeftCamDurationDiagnosticPin = 24;
 int RightCamDurationDiagnosticPin = 25;
 
@@ -153,9 +158,34 @@ void ExhaustCamState::BeginPulse(unsigned camInterval, unsigned crankInterval)
 		float angle = ((float)TimeSinceCrankSignal) / ticksPerDegree;
 		
 		// Update the baseline cam angle while solenoids are disabled.
-		if (CalibrationCountdown > 0)
+		if ((CalibrationCountdown > 0) || onlyMeasureBaseline)
 		{
-			UpdateRollingAverage(&Baseline, angle, 1);
+			if (useStaticBaseline)
+			{
+				// These values were discovered by setting the "onlyMeasureBaseline"
+				// flag, logging the baseline values while the engine was at 2500 RPM
+				// for about 15 seconds, and then using Excel to average the values.
+				if (this->Left)
+				{
+					Baseline = 131.2145;
+				}
+				else
+				{
+					Baseline = 41.0733;
+				}
+
+				// Sanity check: Compare the static baselines to measured baselines.
+				const int tolerance = 5;
+				if ((angle > Baseline + tolerance) || (angle < Baseline - tolerance))
+				{
+					mode.Fail(Left ? "Left Baseline" : "Right Baseline");
+				}
+			}
+			else
+			{
+				UpdateRollingAverage(&Baseline, angle, 1);
+			}
+
 			Angle = 0;
 		}
 		else

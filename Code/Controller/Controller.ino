@@ -76,6 +76,29 @@ IIntervalRecorder *intervalRecorder = IIntervalRecorder::GetInstance();
 ITerminal *terminal = ITerminal::GetInstance();
 CurveTable *table = CurveTable::CreateExhaustCamTable();
 
+// Do not change these at run-time!
+//
+// By default, the controller will discover the baseline cam
+// angle at run-time, by measuring it shortly after startup,
+// while the the solenoids are disabled. This kinda works, but
+// you really need to hold a constant RPM for a few seconds to
+// get a good baseline. (Idle RPM jumps around too much to be
+// useful for this measurement.) Sometimes it'll be off by a
+// couple degrees or so.
+//
+// Set onlyMeasureBaseline to force the controller to measure
+// the cam baseline angle continuously, never attempting to
+// control the cam angle. This is useful to determine the 
+// static baseline angles to use.
+//
+int onlyMeasureBaseline = 0;
+//
+// Set the useStaticBaseline flag to skip the measurement step
+// and use hard-coded baseline values instead of discovered
+// baseline values. The values are in ExhaustCamState.cpp.
+//
+int useStaticBaseline = 1;
+
 // Exhaust cam solenoid drivers
 using namespace arduino_due::pwm_lib;
 pwm<pwm_pin::PWML1_PC4> RightSolenoid; // pin 36, blue, passenger side
@@ -85,8 +108,6 @@ pwm<pwm_pin::PWML2_PC6> LeftSolenoid; // pin 38, yellow, driver side
 // = 3330.0 microseconds
 // Period is defined in hundredths of a microsecond
 #define PWM_PERIOD 333 * 1000
-
-float DebugSolenoidDuty;
 
 ///////////////////////////////////////////////////////////////////////////////
 // The setup function runs once when you press reset or power the board.
@@ -172,7 +193,7 @@ void loop()
 	// data I am just letting the cams rest. At least for now.
 	// Might be fun to try creating overlap at idle, just to see if 
 	// it starts to sound like an old-school muscle car...
-	if ((mode.GetMode() == Mode::Running) && (Crank.Rpm > MINIMUM_EXAVCS_RPM))
+	if ((mode.GetMode() == Mode::Running) && (Crank.Rpm > MINIMUM_EXAVCS_RPM) && !onlyMeasureBaseline)
 	{
 		LeftFeedback.Update(micros(), Crank.Rpm, LeftExhaustCam.Angle, CamTargetAngle);
 		RightFeedback.Update(micros(), Crank.Rpm, RightExhaustCam.Angle, CamTargetAngle);
@@ -186,8 +207,6 @@ void loop()
 		ratio = (baseDuty + RightFeedback.Output) / 100.0f;
 		duty_float = PWM_PERIOD * ratio;
 		RightSolenoid.set_duty((uint32_t)duty_float);
-
-		DebugSolenoidDuty = RightFeedback.Output + baseDuty;
 	}
 	else
 	{
