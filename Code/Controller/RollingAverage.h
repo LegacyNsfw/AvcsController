@@ -7,27 +7,30 @@
 // Might be worth revisiting with two timing marks on the cam pulley, as that
 // would give twice as much crank and crank-to-cam data to work with.
 //
-// A smoothingRate of zero means no smoothing at all.
-// A smoothingRate of one means that the average will move 50% of the way toward
-// the latest sample.
-// A smoothingRate of ten means that the average will move 10% of the way toward
-// the latest sample.
+// A weight of one means no smoothing at all - the new value replaces the old.
+// A weight of 0.5 means the average will be the midpoint of the new and old.
+// A weight of 0.1 means the "average" will be moved 10% closer to the new value.
 ///////////////////////////////////////////////////////////////////////////////
 
-template<typename T> void UpdateRollingAverage(T *average, T newValue, int smoothingRate)
+template<typename T> void UpdateRollingAverage(T *average, T newValue, float weight)
 {
-	if (smoothingRate == 0)
+	if (weight == 1.0f)
 	{
 		*average = newValue;
 		return;
 	}
+	
+	*average = (T) (weight * newValue) + ((1 - weight) * *average);
+}
 
-	float numeratorFactor = (float)smoothingRate;
-	float denominatorFactor = (float)smoothingRate + 1;
+float GetRollingAverageWeight(int rpm)
+{
+	if (rpm > 2000)
+	{
+		return 1.0f;
+	}
 
-	float temp = (float) (*average);
-	temp = ((temp * numeratorFactor) + newValue) / denominatorFactor;
-	*average = (T)temp;
+	return 0.1f;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

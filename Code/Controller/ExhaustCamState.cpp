@@ -137,7 +137,7 @@ void ExhaustCamState::BeginPulse(unsigned camInterval, unsigned crankInterval)
 	}
 
 	// Cam interval is only used to determine RPM.
-	UpdateRollingAverage(&AverageInterval, camInterval, 0);
+	UpdateRollingAverage(&AverageInterval, camInterval, 1);
 
 	// Set/update TimeSinceCrankSignal
 	if (CycleState == CycleStates::Pulse1)
@@ -149,7 +149,7 @@ void ExhaustCamState::BeginPulse(unsigned camInterval, unsigned crankInterval)
 		unsigned ticksPerCamRevolution = AverageInterval * 2;
 		unsigned camRpm = TicksPerMinute / ticksPerCamRevolution;
 		unsigned crankRpm = camRpm * 2;
-		UpdateRollingAverage(&Rpm, crankRpm, 0);
+		UpdateRollingAverage(&Rpm, crankRpm, 1);
 	
 		// Crank interval is used to determine cam position.
 		UpdateRollingAverage(&TimeSinceCrankSignal, crankInterval, 1);
