@@ -28,7 +28,7 @@ void CrankState::BeginPulse(unsigned elapsed)
 	UpdateRollingAverage(&AverageInterval, elapsed, 1);
 
 	unsigned rpm = (TicksPerMinute / AverageInterval) * 2; // x2 because the sensor is on a cam pulley, not the crank itself.
-	UpdateRollingAverage(&Rpm, rpm, 0);
+	UpdateRollingAverage(&Rpm, rpm, 1);
 }
 
 void CrankState::EndPulse(unsigned interval)
