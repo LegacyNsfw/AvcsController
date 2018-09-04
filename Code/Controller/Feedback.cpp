@@ -131,7 +131,7 @@ void Feedback::Update(long currentTimeInMicroseconds, unsigned rpm, float actual
 		bucket = Feedback::BucketCount - 1;
 	}
 
-	UpdateRollingAverage(&(Average[bucket]), Output, 5);
+	UpdateRollingAverage(&(Average[bucket]), Output, 0.1f);
 
 	PreviousError = error;
 }
