@@ -186,14 +186,11 @@ void ExhaustCamState::BeginPulse(unsigned camInterval, unsigned crankInterval)
 			{
 				UpdateRollingAverage(&Baseline, angle, 1);
 			}
+		}
 
-			Angle = 0;
-		}
-		else
-		{
-			angle = angle - Baseline;
-			UpdateRollingAverage(&Angle, angle, 1);
-		}
+		angle = angle - Baseline;
+		UpdateRollingAverage(&Angle, angle, 1);
+		Updated = 1;
 	}
 }
 
