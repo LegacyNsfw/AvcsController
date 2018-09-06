@@ -37,6 +37,7 @@ public:
 	unsigned PinState; // set by the .ino code, should match PulseState
 	unsigned PulseState; // set by the interrupt handler, should match PinState
 	unsigned Timeout;
+	unsigned Updated;
 
 	ExhaustCamState(int left)
 	{
@@ -51,6 +52,7 @@ public:
 		PinState = 0;
 		PulseState = 0;
 		Timeout = 0;
+		Updated = 0;
 	}
 
 	void StartCycle();

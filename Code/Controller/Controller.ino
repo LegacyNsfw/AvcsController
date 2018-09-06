@@ -195,18 +195,29 @@ void loop()
 	// it starts to sound like an old-school muscle car...
 	if ((mode.GetMode() == Mode::Running) && (Crank.Rpm > MINIMUM_EXAVCS_RPM) && !onlyMeasureBaseline)
 	{
-		LeftFeedback.Update(micros(), Crank.Rpm, LeftExhaustCam.Angle, CamTargetAngle);
-		RightFeedback.Update(micros(), Crank.Rpm, RightExhaustCam.Angle, CamTargetAngle);
-
 		float baseDuty = 44.0f;
+		float ratio;
+		float duty;
 
-		float ratio = (baseDuty + LeftFeedback.Output) / 100.0f;
-		float duty_float = PWM_PERIOD * ratio;
-		LeftSolenoid.set_duty((uint32_t)duty_float);
+		if (LeftExhaustCam.Updated)
+		{
+			LeftExhaustCam.Updated = 0;
 
-		ratio = (baseDuty + RightFeedback.Output) / 100.0f;
-		duty_float = PWM_PERIOD * ratio;
-		RightSolenoid.set_duty((uint32_t)duty_float);
+			LeftFeedback.Update(micros(), Crank.Rpm, LeftExhaustCam.Angle, CamTargetAngle);
+			float ratio = (baseDuty + LeftFeedback.Output) / 100.0f;
+			float duty = PWM_PERIOD * ratio;
+			LeftSolenoid.set_duty((uint32_t)duty);
+		}
+
+		if (RightExhaustCam.Updated)
+		{
+			RightExhaustCam.Updated = 0;
+
+			RightFeedback.Update(micros(), Crank.Rpm, RightExhaustCam.Angle, CamTargetAngle);
+			ratio = (baseDuty + RightFeedback.Output) / 100.0f;
+			duty = PWM_PERIOD * ratio;
+			RightSolenoid.set_duty((uint32_t)duty);
+		}
 	}
 	else
 	{

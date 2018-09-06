@@ -67,8 +67,13 @@ void Feedback::Reset(int gainType)
 	// P=.25  D=.50 = overshoots on sudden chanages
 	// P=.10  D=.30 = overshoots on sudden changes
 
+	// Worked well when feedback was updated with every interation of the main loop
 	ProportionalGain = 1.0f; 
 	IntegralGain = 0.5f; 
+	DerivativeGain = 0.001f;
+
+	ProportionalGain = 1.0f;
+	IntegralGain = 7.5f;
 	DerivativeGain = 0.001f;
 
 	// Try more P, less I
