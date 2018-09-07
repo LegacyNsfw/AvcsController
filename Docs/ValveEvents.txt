@@ -1,0 +1,55 @@
+EJ25 single AVCS cams at 0.006
+Durations are 240/240
+
+Intake retarded: open at 4 ATDC, close at 65 ABDC
+Intake advanced: open at 15 BTDC, close at 45 ABDC
+Exhaust: open at 65 BBDC, close at 5 ATDC
+
+Maximum overlap is 20 degrees (intake advanced)
+Minimum overlap is 0 (intake retarded)
+
+Intake centerline, retarded: 125
+Intake centerline, advanced: 105
+Exhaust centerline: 115
+
+AKA "120 -5" with the intake retarded, "110 +5" with the intake advanced.
+
+EJ25 single AVCS cams at 0.050
+Durations are 204/208
+
+Intake retarded: open at -23, close at 47 (-34 overlap)
+Intake advanced: open at -3, close at 27 (-14 overlap)
+Exhaust: open at 39, close at -11
+
+Maximum overlap is -14 (intake advanced)
+Minimum overlap is -34 (intake retarded)
+
+Centerlines as above.
+
+BC 272 Dual-AVCS cams at 0.006
+Durations are 272/272
+
+Intake retarded: open at 6, close at 86
+Intake advanced: open at 26, close at 66
+Exhaust advanced: open at 82, close at 10
+Exhaust retarded: opena at 67, close at 25
+
+Intake centerline, retarded: 130
+Intake centerline, advanced: 110
+Exhaust centerline, advanced: 126
+Exhaust centerline, retarded: 111
+
+Max overlap 51
+Min overlap 16
+
+BC 272 Dual-AVCS cams at 0.050
+Durations are 222/222
+
+Intake retarded: open at -19, close at 61
+Intake advanced: open at 1, close at 41
+Exhaust advanced: open at 57, close at -15
+Exhaust retarded: open at 42, close at 0
+
+Max overlap 1
+Min overlap -34
+

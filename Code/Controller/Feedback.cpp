@@ -35,49 +35,15 @@ void Feedback::Reset(int gainType)
 {
 	lastTime = 0;
 
-	// Oscillates slightly (when feedback is calculated in the main loop)
-//	ProportionalGain = 10.0f;
-//	IntegralGain = 1.0f;
-//	DerivativeGain = 0.0001f;
-
-	// Oscillates rarely, but is slow to find target
-//	ProportionalGain = 0.75f;
-//	IntegralGain = 0.40f;
-//	DerivativeGain = 0.0001f;
-
-	// This works fairly well, but is prone to big overshoots at times, and it takes a while to recover from them.
-//	ProportionalGain = 0.5f;
-//	IntegralGain = 0.50f;
-//	DerivativeGain = 0.0001f;
-
-	// Also overshoots with sudden 5% target changes
-	// But worked well without sudden target changes
-//	ProportionalGain = 1.0f; 
-//	IntegralGain = 0.30f; 
-//	DerivativeGain = 0.001f;
-
-	// Proportional gain, with 0.3f integral:
-	// 1.2f = oscillation
-	// 1.0f = overshoots on abrupt changes (e.g. 5% target at cruise RPM), but works well if no abrupt changes (e.g. 0% target at cruise RPM)
-	// 0.25 = 
-	// Integral gain of 0.3f moves DC approx 1% per second.
-	//
-	// Derivative? Dunno yet.
-
-	// P=.25  D=.50 = overshoots on sudden chanages
-	// P=.10  D=.30 = overshoots on sudden changes
-
-	// Worked well when feedback was updated with every interation of the main loop
-	ProportionalGain = 1.0f; 
-	IntegralGain = 0.5f; 
-	DerivativeGain = 0.001f;
-
-	ProportionalGain = 1.0f;
-	IntegralGain = 7.5f;
-	DerivativeGain = 0.001f;
-
+	// This works, but probably could be much improved.
+	// Does not oscillate while driving, tracks well as RPM increases.
+	// Overshoots target significantly when transitioning above RPM threshold (target changes abruptly from 0 degrees to 1 degree).
 	// Try more P, less I
+	// Try more I (7.5 was tried briefly, but not while driving, might work fine.)
 	// Try more D
+	ProportionalGain = 1.0f;
+	IntegralGain = 2.5f; 
+	DerivativeGain = 0.001f;
 
 	// Reset state variables
 	ProportionalTerm = 0;

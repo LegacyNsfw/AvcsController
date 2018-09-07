@@ -54,7 +54,8 @@ void Mode::Update()
 
 	case Mode::Warming:
 
-		if (OilTemperature > 65.5) // 65.5C = 150F, 71C = 160F
+		// Transition tests will need to be updated if this changes.
+		if (OilTemperature > 71) // 65.5C = 150F, 71C = 160F
 		{
 			this->BeginRunning();
 		}
