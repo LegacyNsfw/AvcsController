@@ -14,7 +14,7 @@ namespace PlxParser
             try
             {
                 Console.Clear();
-                SerialPort port = OpenPort();
+                SerialPort port = OpenPort(args[0]);
                 Loop(port);
             }
             catch (Exception exception)
@@ -27,10 +27,10 @@ namespace PlxParser
             }            
         }
 
-        private static SerialPort OpenPort()
+        private static SerialPort OpenPort(string portName)
         {
             Console.WriteLine("Opening port.");
-            SerialPort port = new SerialPort("COM6", 19200, Parity.None, 8, StopBits.One);
+            SerialPort port = new SerialPort(portName, 19200, Parity.None, 8, StopBits.One);
             port.Open();
             Console.WriteLine("Port opened.");
             return port;
