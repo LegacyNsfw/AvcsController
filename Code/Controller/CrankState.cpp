@@ -2,11 +2,13 @@
 #include "Globals.h"
 #include "RollingAverage.h"
 #include "Mode.h"
+#include "CurveTable.h"
 #include "CrankState.h"
 #include "ExhaustCamState.h"
 #include "IntervalRecorder.h"
 
 CrankState Crank;
+extern CurveTable *pFilterWeightTable;
 
 void CrankState::BeginPulse(unsigned elapsed)
 {
@@ -27,8 +29,12 @@ void CrankState::BeginPulse(unsigned elapsed)
 
 	UpdateRollingAverage(&AverageInterval, elapsed, 1);
 
-	unsigned rpm = (TicksPerMinute / AverageInterval) * 2; // x2 because the sensor is on a cam pulley, not the crank itself.
-	UpdateRollingAverage(&Rpm, rpm, 1);
+	// x2 because the sensor is on a cam pulley, not the crank itself.
+	unsigned rpm = (TicksPerMinute / AverageInterval) * 2; 
+
+	// RPM is filtered because it jumps around a lot at idle.
+	float weight = pFilterWeightTable->GetValue(Rpm);
+	UpdateRollingAverage(&Rpm, rpm, weight);
 }
 
 void CrankState::EndPulse(unsigned interval)

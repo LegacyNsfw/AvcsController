@@ -193,9 +193,9 @@ void loop()
 	// data I am just letting the cams rest. At least for now.
 	// Might be fun to try creating overlap at idle, just to see if 
 	// it starts to sound like an old-school muscle car...
-	if ((mode.GetMode() == Mode::Running) && (Crank.Rpm > MINIMUM_EXAVCS_RPM) && !onlyMeasureBaseline)
+	if ((mode.GetMode() == Mode::Running) && !onlyMeasureBaseline)
 	{
-		float baseDuty = 44.0f;
+		float baseDuty = 41.0f;
 		float ratio;
 		float duty;
 

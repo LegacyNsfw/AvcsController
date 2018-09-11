@@ -23,8 +23,6 @@ template<typename T> void UpdateRollingAverage(T *average, T newValue, float wei
 	*average = (T) (weight * newValue) + ((1 - weight) * *average);
 }
 
-float GetRollingAverageWeight(int rpm);
-
 ///////////////////////////////////////////////////////////////////////////////
 // Self-test the rolling-average code
 ///////////////////////////////////////////////////////////////////////////////

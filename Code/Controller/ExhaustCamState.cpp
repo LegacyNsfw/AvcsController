@@ -31,8 +31,12 @@
 extern int onlyMeasureBaseline;
 extern int useStaticBaseline;
 
+// Attaching a scope to these pins was very useful when debugging the noise-rejection code.
 int LeftCamDurationDiagnosticPin = 24;
 int RightCamDurationDiagnosticPin = 25;
+
+// Table to get the filtering weight to use, based on RPM.
+extern CurveTable *pFilterWeightTable;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Instances of ExhaustCamTiming. These are declared extern in 
@@ -136,8 +140,11 @@ void ExhaustCamState::BeginPulse(unsigned camInterval, unsigned crankInterval)
 		}
 	}
 
+	// RPM is filtered because it jumps around a lot at idle.
+	float weight = pFilterWeightTable->GetValue(Rpm);
+
 	// Cam interval is only used to determine RPM.
-	UpdateRollingAverage(&AverageInterval, camInterval, 1);
+	UpdateRollingAverage(&AverageInterval, camInterval, weight);
 
 	// Set/update TimeSinceCrankSignal
 	if (CycleState == CycleStates::Pulse1)
@@ -149,10 +156,10 @@ void ExhaustCamState::BeginPulse(unsigned camInterval, unsigned crankInterval)
 		unsigned ticksPerCamRevolution = AverageInterval * 2;
 		unsigned camRpm = TicksPerMinute / ticksPerCamRevolution;
 		unsigned crankRpm = camRpm * 2;
-		UpdateRollingAverage(&Rpm, crankRpm, 1);
+		UpdateRollingAverage(&Rpm, crankRpm, weight);
 	
 		// Crank interval is used to determine cam position.
-		UpdateRollingAverage(&TimeSinceCrankSignal, crankInterval, 1);
+		UpdateRollingAverage(&TimeSinceCrankSignal, crankInterval, weight);
 
 		float ticksPerDegree = (float)ticksPerCamRevolution / 360.0f;
 		float angle = ((float)TimeSinceCrankSignal) / ticksPerDegree;
@@ -184,12 +191,12 @@ void ExhaustCamState::BeginPulse(unsigned camInterval, unsigned crankInterval)
 			}
 			else
 			{
-				UpdateRollingAverage(&Baseline, angle, 1);
+				UpdateRollingAverage(&Baseline, angle, weight);
 			}
 		}
 
 		angle = angle - Baseline;
-		UpdateRollingAverage(&Angle, angle, 1);
+		UpdateRollingAverage(&Angle, angle, weight);
 		Updated = 1;
 	}
 }
