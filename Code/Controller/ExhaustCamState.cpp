@@ -20,6 +20,7 @@
 #include "stdafx.h"
 #include "Mode.h"
 #include "Configuration.h"
+#include "CurveTable.h"
 #include "Globals.h"
 #include "RollingAverage.h"
 #include "ExhaustCamState.h"
