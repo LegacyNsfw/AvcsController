@@ -1,18 +1,13 @@
-Move the feedback updates out of the main loop, just update them when the cam angle is calculated in the ISR.
-	There's no point updating the solenoid duty cycle without new information.
-
 Low-pass filter on target angle?
-	Maybe just for a few seconds after coming out of idle or sync mode
-
-Rolling average weight should vary by RPM
-	Might allow for keeping AVCS active at idle
-	Should avoid stumbling when RPM crosses the engagement threshold
+	Maybe just for a few seconds after coming out of idle or calibration mode
 
 Revise older classes to use interface-style class declarations
 	ScreenNavigator
 	Mode
 	PlxProcessor
 	InterruptHandlers
+	CrankState ?
+	ExchaustCamState ?
 
 Paint a second timing mark on the cam pulley
 	Would allow doing the feedback math & solenoid DC changes twice as often
