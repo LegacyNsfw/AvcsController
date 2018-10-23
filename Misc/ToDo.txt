@@ -18,3 +18,31 @@ Paint a second timing mark on the cam pulley
 Add MAP sensor
 	Will allow reduced retard for lower overlap at high boost
 	Not sure how useful that would be, though.
+
+
+if ((rpm < minimum) || (mode.GetMode() != Mode::Running))
+{
+	deadline = millis() + Ramp::DelayTime;
+}
+
+targetAngle = table->GetValue(RPM);
+targetAngle = ramp->GetValue(targetAngle, deadline);
+
+float Ramp::GetValue(float target, unsigned long deadline)
+{
+	long millis = millis();
+	if (millis > deadline)
+	{
+		return target;
+	}
+
+	if (millis < deadline - DelayTime)
+	{
+		return 0;
+	}	
+
+	float startTime = deadline - DelayTime;
+	float elapsedTime = millis - startTime;
+	float fraction = elapsedTime / DelayTime;
+	return target * fraction;
+}
