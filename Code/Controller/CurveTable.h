@@ -26,6 +26,7 @@ private:
 public:
 	static CurveTable * CreateExhaustCamTable();
 	static CurveTable * CreateRpmFilterTable();
+	static CurveTable* CreateGainTable();
 
 	CurveTable(
 		int elements,

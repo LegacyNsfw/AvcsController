@@ -64,6 +64,9 @@
 #include "pwm_lib\pwm_lib.h"
 //#include "pwm_lib.h"
 
+// Defined in GainModifier.cpp
+float GetGainModifier(float rpm, long now);
+
 ScreenNavigator navigator;
 LiquidCrystal lcd(8, 9, 4, 5, 6, 7); 
 DFR_Key keys;
@@ -195,6 +198,8 @@ void loop()
 	// it starts to sound like an old-school muscle car...
 	if ((mode.GetMode() == Mode::Running) && !onlyMeasureBaseline)
 	{
+		float gainModifier = GetGainModifier(Crank.Rpm, millis());
+
 		float baseDuty = 41.0f;
 		float ratio;
 		float duty;
@@ -202,6 +207,7 @@ void loop()
 		if (LeftExhaustCam.Updated)
 		{
 			LeftExhaustCam.Updated = 0;
+			LeftExhaustCam.GainModifier = gainModifier;
 
 			LeftFeedback.Update(micros(), Crank.Rpm, LeftExhaustCam.Angle, CamTargetAngle);
 			float ratio = (baseDuty + LeftFeedback.Output) / 100.0f;
@@ -212,6 +218,7 @@ void loop()
 		if (RightExhaustCam.Updated)
 		{
 			RightExhaustCam.Updated = 0;
+			RightExhaustCam.GainModifier = gainModifier;
 
 			RightFeedback.Update(micros(), Crank.Rpm, RightExhaustCam.Angle, CamTargetAngle);
 			ratio = (baseDuty + RightFeedback.Output) / 100.0f;

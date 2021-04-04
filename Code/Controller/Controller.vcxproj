@@ -113,6 +113,7 @@
     <ClCompile Include="DFR_Key.cpp" />
     <ClCompile Include="ExhaustCamState.cpp" />
     <ClCompile Include="Feedback.cpp" />
+    <ClCompile Include="GainModifier.cpp" />
     <ClCompile Include="InterruptHandlers.cpp" />
     <ClCompile Include="IntervalRecorder.cpp" />
     <ClCompile Include="MenuBuilder.cpp" />

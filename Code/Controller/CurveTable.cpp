@@ -11,7 +11,7 @@ CurveTable * CurveTable::CreateExhaustCamTable()
 {
 	// Intake advance, for comparison   0.0     15.0      30.0    30.0     15.0      10.0
 	static float input[] = { 800.0f, 1000.0f, 1250.0f, 1500.0f, 3200.0f, 5600.0f,  8000.0f };
-	static float output[] = {  1.0f,    5.0f,    1.0f,    1.0f,    1.0f,   15.0f,    20.0f };
+	static float output[] = {  1.0f,    1.0f,    1.0f,    1.0f,    1.0f,   15.0f,    20.0f };
 
 	// With 15 degrees in cruise, (and 30 degrees intake advance), the engine ran rough.
 	// With BC 272s, that would be 11 degrees of overlap @ 0.050. So, no wonder.
@@ -33,6 +33,18 @@ CurveTable * CurveTable::CreateRpmFilterTable()
 
 	return new CurveTable(
 		2,
+		input,
+		output);
+}
+
+CurveTable* CurveTable::CreateGainTable()
+{
+	// Gain needs to be reduced at idle to prevent oscillation
+	static float input[] =  { 500.0f, 1000.0f,  2000.0f };
+	static float output[] = { 0.25f,  0.5f,     1.0f };
+
+	return new CurveTable(
+		3,
 		input,
 		output);
 }

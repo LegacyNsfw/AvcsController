@@ -65,5 +65,8 @@
     <ClCompile Include="..\Controller\CurveTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Controller\GainModifier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

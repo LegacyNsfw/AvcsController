@@ -13,6 +13,8 @@ public:
 	float IntegralGain;
 	float DerivativeGain;
 
+	float GainModifier;
+
 	float PreviousError;
 
 	float Output;

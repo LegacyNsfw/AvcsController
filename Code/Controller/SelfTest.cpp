@@ -17,6 +17,8 @@ extern LiquidCrystal lcd;
 #include "RollingAverage.h"
 #include "CurveTable.h"
 
+void SelfTestGetGainModifier();
+
 int anyFailed;
 const int assertDelay = 50;
 
@@ -46,7 +48,8 @@ void SelfTest()
 	RunSuite(Feedback);
 	RunSuite(PeriodicJobs);
 	RunSuite(CurveTable);
-	
+	RunSuite(GetGainModifier);
+
 #if ARDUINO
 	lcd.clear();
 

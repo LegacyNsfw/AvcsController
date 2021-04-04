@@ -143,5 +143,8 @@
     <ClCompile Include="CurveTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GainModifier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

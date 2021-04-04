@@ -47,19 +47,19 @@ unsigned bestClock(double frequency, unsigned *retRC) {
 	float error;
 	int clkId = 3;
 	int bestClock = 3;
-	float bestError = 3.4e38;
+	float bestError = (float)3.4e38;
 	do
 	{
-		ticks = (float)VARIANT_MCK / frequency / (float)clockConfig[clkId].divisor;
+		ticks = (float)(VARIANT_MCK / frequency / (float)clockConfig[clkId].divisor);
 		// error = abs(ticks - round(ticks));
-		error = clockConfig[clkId].divisor * fabs((float)(ticks - round(ticks)));	// Error comparison needs scaling
+		error = (float)clockConfig[clkId].divisor * fabs((float)(ticks - round(ticks)));	// Error comparison needs scaling
 		if (error < bestError)
 		{
 			bestClock = clkId;
 			bestError = error;
 		}
 	} while (clkId-- > 0);
-	ticks = (float)VARIANT_MCK / frequency / (float)clockConfig[bestClock].divisor;
+	ticks = (float)(VARIANT_MCK / frequency / (float)clockConfig[bestClock].divisor);
 	*retRC = (unsigned)round(ticks);
 	return clockConfig[bestClock].flag;
 }

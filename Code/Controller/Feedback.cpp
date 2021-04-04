@@ -50,6 +50,8 @@ void Feedback::Reset(int gainType)
 	IntegralTerm = 0;
 	DerivativeTerm = 0;
 
+	GainModifier = 1.0f;
+
 	PreviousError = 0;
 	Output = 0;
 
@@ -73,9 +75,9 @@ void Feedback::Update(long currentTimeInMicroseconds, unsigned rpm, float actual
 //	error = -error;
 	float errorChange = error - PreviousError;
 	
-	ProportionalTerm = error * ProportionalGain;
-	IntegralTerm += (error * time) * IntegralGain;
-	DerivativeTerm = DerivativeGain * (errorChange / time);
+	ProportionalTerm = error * (ProportionalGain * GainModifier);
+	IntegralTerm += (error * time) * (IntegralGain * GainModifier);
+	DerivativeTerm = (DerivativeGain * GainModifier) * (errorChange / time);
 
 	// Make sure that the integral term never gets excessive.
 	float integralLimit = 10;
