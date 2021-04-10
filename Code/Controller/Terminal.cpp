@@ -92,8 +92,17 @@ public:
 		//PrintMenu();
 	}
 
+	// This is used to show the menu when Update is invoked for the first time.
+	long showedMenu = 0;
+
 	virtual void Update()
 	{
+		if (showedMenu == 0)
+		{
+			PrintMenu();
+			showedMenu = 1;
+		}
+
 		ProcessInput();
 		SendOutput();
 	}
@@ -111,6 +120,7 @@ public:
 			return;
 		}
 
+		int handled = 0;
 		for (int i = 0; menuItems[i] != null; i++)
 		{
 			TerminalMenuItem *item = menuItems[i];
@@ -118,6 +128,7 @@ public:
 			if (input == key ||
 				(isupper(key) && input == tolower(key)))
 			{
+				handled = 1;
 				terminalMode = item->GetMode();
 				switch (terminalMode)
 				{
@@ -136,13 +147,14 @@ public:
 					break;
 
 				default:
-				case TerminalMode::ShowMenu:
-					logMethod = NULL;
-					logSkipCount = 0;
-					PrintMenu();
-					break;
+					handled = 0;
 				}
 			}
+		}
+
+		if (handled == 0)
+		{
+			PrintMenu();
 		}
 	}
 
@@ -191,6 +203,9 @@ public:
 
 	void PrintMenu()
 	{
+		Serial.print("\r\n");
+		Serial.print("vvvvvvvvvv\r\n");
+
 		for (int i = 0; menuItems[i] != null; i++)
 		{
 			TerminalMenuItem *item = menuItems[i];
@@ -198,6 +213,9 @@ public:
 			snprintf(line, 100, "%c - %s\r\n", item->GetKey(), item->GetName());
 			Serial.print(line);
 		}
+
+		Serial.print("^^^^^^^^^^");
+		Serial.print("\r\n");
 	}
 
 	void WriteLogDefault()
@@ -318,9 +336,10 @@ public:
 			new TerminalMenuItem("Left Log", 'L', TerminalMode::LogCsv, &Terminal::WriteLogLeft, Parameter::None),
 			new TerminalMenuItem("Right Log", 'R', TerminalMode::LogCsv, &Terminal::WriteLogRight, Parameter::None),
 			new TerminalMenuItem("Crank Log", 'C', TerminalMode::LogCsv, &Terminal::WriteLogCrank, Parameter::None),
-			new TerminalMenuItem("Adjust Proportional Gain", 'P', TerminalMode::SetParameter, NULL, Parameter::ProportionalGain),
-			new TerminalMenuItem("Adjust Integral Gain", 'I', TerminalMode::SetParameter, NULL, Parameter::IntegralGain),
-			new TerminalMenuItem("Adjust Derivative Gain", 'D', TerminalMode::SetParameter, NULL, Parameter::DerivativeGain),
+//			new TerminalMenuItem("Show Parameters", 'P', TerminalMode::ShowParameters, NULL, Parameter::ProportionalGain),
+//			new TerminalMenuItem("Adjust Proportional Gain", 'P', TerminalMode::SetParameter, NULL, Parameter::ProportionalGain),
+//			new TerminalMenuItem("Adjust Integral Gain", 'I', TerminalMode::SetParameter, NULL, Parameter::IntegralGain),
+//			new TerminalMenuItem("Adjust Derivative Gain", 'D', TerminalMode::SetParameter, NULL, Parameter::DerivativeGain),
 			NULL
 		};
 	}

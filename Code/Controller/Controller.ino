@@ -40,6 +40,7 @@
 // Elapsed time corresponds to cam phase angle.
 // Use PID feedback to set AVCS solenoid PWM, to drive cam angle toward desired angle.
 
+#include <pwm_defs.h>
 #include "SelfTest.h"
 #include "Mode.h"
 #include "ScreenNavigator.h"
@@ -61,8 +62,8 @@
 #include "CurveTable.h"
 
 //#include <..\Pwm_Lib\pwm_lib.h>
-#include "pwm_lib\pwm_lib.h"
-//#include "pwm_lib.h"
+//#include "pwm_lib\pwm_lib.h"
+#include "pwm_lib.h"
 
 // Defined in GainModifier.cpp
 float GetGainModifier(float rpm, long now);
@@ -116,6 +117,8 @@ pwm<pwm_pin::PWML2_PC6> LeftSolenoid; // pin 38, yellow, driver side
 // The setup function runs once when you press reset or power the board.
 ///////////////////////////////////////////////////////////////////////////////
 void setup() {
+	Serial.begin(115200);
+
 	lcd.begin(16, 2);
 	lcd.setCursor(0, 0);
 	lcd.print("1234567890213456");
@@ -125,6 +128,8 @@ void setup() {
 	lcd.clear();
 	
 	SelfTest();
+
+	Serial.write("Initializing peripherals.\r\n");
 
 	DisplayLine1[DisplayWidth] = 0;
 	DisplayLine2[DisplayWidth] = 0;
@@ -149,6 +154,8 @@ void setup() {
 	// pinMode(A8, INPUT); // MAP sensor
 	// pinMode(A9, INPUT); // Knob?
 
+	Serial.write("Initializing components.\r\n");
+
 	navigator.Initialize(&mode);
 	plx.Initialize(&Serial3, &Serial2);	
 	interruptHandlers.Initialize();
@@ -163,8 +170,10 @@ void setup() {
 	LeftSolenoid.start(PWM_PERIOD, 0);
 	RightSolenoid.start(PWM_PERIOD, 0);
 
-	Serial.begin(115200);
+	Serial.write("Initialization complete.\r\n");
 }
+
+//#define HeartBeat
 
 ///////////////////////////////////////////////////////////////////////////////
 // This is invoked repeatedly by the Arduino core library.
@@ -172,6 +181,21 @@ void setup() {
 void loop()
 {
 	iterationCounter++;
+
+#ifdef HeartBeat
+	long now = millis();
+	if (now % 1000 == 0)
+	{
+		long count = now / 1000;
+		char message[4];
+		message[0] = (uint8_t)(count % 10) + '0';
+		message[1] = '\r';
+		message[2] = '\n';
+		message[3] = 0;
+		Serial.write(message);
+		Serial.flush();
+	}
+#endif
 
 	int key = keys.getKey();
 	if (navigator.Update(key))
@@ -207,7 +231,7 @@ void loop()
 		if (LeftExhaustCam.Updated)
 		{
 			LeftExhaustCam.Updated = 0;
-			LeftExhaustCam.GainModifier = gainModifier;
+			LeftFeedback.GainModifier = gainModifier;
 
 			LeftFeedback.Update(micros(), Crank.Rpm, LeftExhaustCam.Angle, CamTargetAngle);
 			float ratio = (baseDuty + LeftFeedback.Output) / 100.0f;
@@ -218,7 +242,7 @@ void loop()
 		if (RightExhaustCam.Updated)
 		{
 			RightExhaustCam.Updated = 0;
-			RightExhaustCam.GainModifier = gainModifier;
+			RightFeedback.GainModifier = gainModifier;
 
 			RightFeedback.Update(micros(), Crank.Rpm, RightExhaustCam.Angle, CamTargetAngle);
 			ratio = (baseDuty + RightFeedback.Output) / 100.0f;

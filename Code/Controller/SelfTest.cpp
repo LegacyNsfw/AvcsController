@@ -53,6 +53,8 @@ void SelfTest()
 #if ARDUINO
 	lcd.clear();
 
+	Serial.write("All tests passed.\r\n");
+
 	SETCURSOR(0, 0);
 	PRINT("Self test done. ");
 	SETCURSOR(0, 1);

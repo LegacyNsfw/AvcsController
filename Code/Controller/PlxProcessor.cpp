@@ -205,8 +205,8 @@ byte* PlxProcessor::FillOutputBuffer()
 
 	if (mode.GetMode() == Mode::Calibrating)
 	{
-		AddSensorBytes(PlxTimingAddress, 0, LeftExhaustCam.Baseline + 64);
-		AddSensorBytes(PlxTimingAddress, 1, RightExhaustCam.Baseline + 64);
+		AddSensorBytes(PlxTimingAddress, 0, (LeftExhaustCam.Angle * 10) + 64);
+		AddSensorBytes(PlxTimingAddress, 1, (RightExhaustCam.Angle * 10) + 64);
 	}
 	else
 	{

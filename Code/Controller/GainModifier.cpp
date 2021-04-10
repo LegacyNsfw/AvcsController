@@ -1,3 +1,7 @@
+#if ARDUINO
+#include <Arduino.h>
+#endif
+
 #include "stdafx.h"
 #include "CurveTable.h"
 #include "SelfTest.h"
@@ -33,6 +37,11 @@ float GetRampInFactor(long now)
 
 float GetGainModifier(float rpm, long now)
 {
+	if (rpm < 500 || now < 1000)
+	{
+		return 0;
+	}
+
 	float rampInGain = GetRampInFactor(now);
 	float rpmGain = gainTable->GetValue(rpm);
 
