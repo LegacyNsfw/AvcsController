@@ -175,12 +175,15 @@ void ExhaustCamState::BeginPulse(unsigned camInterval, unsigned crankInterval)
 				// for about 15 seconds, and then using Excel to average the values.
 				if (this->Left)
 				{
-					Baseline = 131.2145; 
+					//Baseline = 131.2145; // -10 to -15
+					//Baseline = 131.11; // -9 to -12
+					Baseline = 130.92; // ?
 				}
 				else
 				{
-					//Baseline = 40.9733; // Subtracted 0.1 since it never flickered "-1" at idle.
-					Baseline = 41.1733; // Added 0.1 since it never flickered "-1" at idle.
+					//Baseline = 41.1733; // -8 to -10
+					Baseline = 41.10; // -6 to -9
+					Baseline = 41.03; // ?
 				}
 
 				// Sanity check: Compare the static baselines to measured baselines.

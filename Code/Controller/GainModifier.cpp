@@ -95,9 +95,9 @@ bool TestGainModifier()
 	long now = 1100;
 	float rpm = 1000.0f;
 
-	if (!WithinOnePercent(GetGainModifier(rpm, now), 0.25f, "50, 50"))
+	if (!WithinOnePercent(GetGainModifier(rpm, now), 0.125f, "50, 50"))
 	{
-		TestFailed("Overall gain should be 25% when rampin and rpm both dictate 50%.");
+		TestFailed("Overall gain should be 12.5% with rampin 50% and rpm 25%.");
 		return false;
 	}
 
