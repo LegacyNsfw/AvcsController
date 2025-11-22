@@ -190,7 +190,7 @@ void ExhaustCamState::BeginPulse(unsigned camInterval, unsigned crankInterval)
 				const int tolerance = 5;
 				if ((angle > Baseline + tolerance) || (angle < Baseline - tolerance))
 				{
-					mode.Fail(Left ? "Left Baseline" : "Right Baseline");
+					mode.Fail(Left ? "Fail: Left Baseline" : "Fail: Right Baseline");
 				}
 			}
 			else

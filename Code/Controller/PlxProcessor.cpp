@@ -205,20 +205,22 @@ byte* PlxProcessor::FillOutputBuffer()
 
 	if (mode.GetMode() == Mode::Calibrating)
 	{
-		AddSensorBytes(PlxTimingAddress, 0, (LeftExhaustCam.Angle * 10) + 64);
-		AddSensorBytes(PlxTimingAddress, 1, (RightExhaustCam.Angle * 10) + 64);
+		AddSensorBytes(PlxTimingAddress, 0, (LeftExhaustCam.Angle) + 64);
+		AddSensorBytes(PlxTimingAddress, 1, (RightExhaustCam.Angle) + 64);
+		AddSensorBytes(PlxTimingAddress, PlxLeftDutyInstance, ErrorCount % 100);
+		AddSensorBytes(PlxTimingAddress, PlxRightDutyInstance, ErrorCount % 100);
 	}
 	else
 	{
 		AddSensorBytes(PlxTimingAddress, 0, LeftExhaustCam.Angle + 64);
 		AddSensorBytes(PlxTimingAddress, 1, RightExhaustCam.Angle + 64);
+		AddSensorBytes(PlxTimingAddress, PlxLeftDutyInstance, LeftFeedback.Output + 64);
+		AddSensorBytes(PlxTimingAddress, PlxRightDutyInstance, RightFeedback.Output + 64);
 	}
 
 //	AddSensorBytes(PlxDutyAddress, PlxLeftDutyInstance, LeftFeedback.Output * 10.23);
 //	AddSensorBytes(PlxDutyAddress, PlxRightDutyInstance, RightFeedback.Output * 10.23);
 
-	AddSensorBytes(PlxTimingAddress, PlxLeftDutyInstance, LeftFeedback.Output + 64);
-	AddSensorBytes(PlxTimingAddress, PlxRightDutyInstance, RightFeedback.Output + 64);
 
 #endif // !SIMULATOR
 

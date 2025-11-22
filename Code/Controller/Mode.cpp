@@ -44,7 +44,7 @@ void Mode::Update()
 			return;
 		}
 
-		if (this->IsCalibrated())
+		if (this->IsCalibrated() && ErrorCount < 10)
 		{
 			this->BeginWarming();
 			strncpy(LastErrorMessage, ErrorMessage, DisplayWidth);
@@ -55,7 +55,7 @@ void Mode::Update()
 	case Mode::Warming:
 
 		// Transition tests will need to be updated if this changes.
-		if (OilTemperature > 71) // 65.5C = 150F, 71C = 160F
+		if (ErrorCount < 10 && OilTemperature > 71) // 65.5C = 150F, 71C = 160F
 		{
 			this->BeginRunning();
 		}
@@ -89,6 +89,11 @@ void Mode::Fail(const char * message)
 		
 	if (ErrorCount > 100)
 	{
+#ifdef ARDUINO
+		Serial.println("Too many errors.");
+		BeginCalibrating();
+#endif
+
 		return;
 	}
 
@@ -161,7 +166,8 @@ int Mode::IsCalibrated()
 	return
 		LeftExhaustCam.CalibrationCountdown == 0 &&
 		RightExhaustCam.CalibrationCountdown == 0 &&
-		Crank.CalibrationCountdown == 0;
+		Crank.CalibrationCountdown == 0 &&
+		ErrorCount < 10;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

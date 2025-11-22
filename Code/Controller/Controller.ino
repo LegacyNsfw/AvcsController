@@ -236,6 +236,7 @@ void loop()
 			LeftFeedback.Update(micros(), Crank.Rpm, LeftExhaustCam.Angle, CamTargetAngle);
 			float ratio = (baseDuty + LeftFeedback.Output) / 100.0f;
 			float duty = PWM_PERIOD * ratio;
+
 			LeftSolenoid.set_duty((uint32_t)duty);
 		}
 
@@ -247,6 +248,7 @@ void loop()
 			RightFeedback.Update(micros(), Crank.Rpm, RightExhaustCam.Angle, CamTargetAngle);
 			ratio = (baseDuty + RightFeedback.Output) / 100.0f;
 			duty = PWM_PERIOD * ratio;
+
 			RightSolenoid.set_duty((uint32_t)duty);
 		}
 	}

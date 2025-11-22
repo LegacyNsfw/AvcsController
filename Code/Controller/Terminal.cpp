@@ -214,6 +214,14 @@ public:
 			Serial.print(line);
 		}
 
+		Serial.print("Mode: ");
+		Serial.print(mode.GetMode());
+		Serial.print("\r\n");
+
+		Serial.print("ErrorCount: ");
+		Serial.print(ErrorCount);
+		Serial.print("\r\n");
+
 		Serial.print("^^^^^^^^^^");
 		Serial.print("\r\n");
 	}

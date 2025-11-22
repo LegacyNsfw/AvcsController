@@ -40,8 +40,8 @@ CurveTable * CurveTable::CreateRpmFilterTable()
 CurveTable* CurveTable::CreateGainTable()
 {
 	// Gain needs to be reduced at idle to prevent oscillation
-	static float input[] =  { 700.0f, 1000.0f,  2000.0f };
-	static float output[] = {   0.0f,   0.25f,     1.0f };
+	static float input[] =  { 1200.0f, 1600.0f,  2000.0f };
+	static float output[] = {    0.0f,   0.5f,     1.0f };
 	// Changing theses values will break the GainModifier unit test! So adjust that too.
 
 	return new CurveTable(

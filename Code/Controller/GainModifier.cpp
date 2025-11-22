@@ -12,7 +12,7 @@ CurveTable* gainTable = CurveTable::CreateGainTable();
 long startTime = 0;
 
 // How many milliseconds to ramp up the gain from zero.
-const long rampInTime = 2000;
+const long rampInTime = 5000;
 
 float GetRampInFactor(long now)
 {
@@ -66,7 +66,7 @@ bool TestRampInFactor()
 		return false;
 	}
 	
-	if (!WithinOnePercent(GetRampInFactor(1100), 0.5f, "1 second"))
+	if (!WithinOnePercent(GetRampInFactor(2600), 0.5f, "1 second"))
 	{
 		TestFailed("RampIn should be 50% after one second.");
 		return false;
@@ -92,16 +92,25 @@ bool TestGainModifier()
 	CurveTable *table = CurveTable::CreateGainTable();
 
 	startTime = 100;
-	long now = 1100;
-	float rpm = 1000.0f;
+	long now = 2600;
+	float rpm = 1400.0f;
 
-	if (!WithinOnePercent(GetGainModifier(rpm, now), 0.125f, "50, 50"))
+	if (!WithinOnePercent(GetGainModifier(rpm, now), 0.125f, "50, 25"))
 	{
 		TestFailed("Overall gain should be 12.5% with rampin 50% and rpm 25%.");
 		return false;
 	}
 
-	now = 5000;
+	now = 2600;
+	rpm = 2500.0f;
+
+	if (!WithinOnePercent(GetGainModifier(rpm, now), 0.5f, "50, 100"))
+	{
+		TestFailed("Overall gain should be 50% with rampin 50% and rpm 100%.");
+		return false;
+	}
+
+	now = 5100;
 	rpm = 2500.0f;
 
 	if (!WithinOnePercent(GetGainModifier(rpm, now), 1.0f, "fully ramped in and driving"))

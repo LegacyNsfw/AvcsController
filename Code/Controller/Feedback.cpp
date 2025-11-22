@@ -72,7 +72,6 @@ void Feedback::Update(long currentTimeInMicroseconds, unsigned rpm, float actual
 	lastTime = currentTimeInMicroseconds;
 
 	float error = target - actual;
-//	error = -error;
 	float errorChange = error - PreviousError;
 	
 	ProportionalTerm = error * (ProportionalGain * GainModifier);
@@ -91,7 +90,18 @@ void Feedback::Update(long currentTimeInMicroseconds, unsigned rpm, float actual
 		IntegralTerm = -integralLimit;
 	}
 
-	Output = ProportionalTerm + IntegralTerm + DerivativeTerm;
+	if (GainModifier == 0)
+	{
+		// Ensure exhaust AVCS cam returns to rest position at idle.
+		Output = -10;
+
+		// Prevent integral wind-up when gain is zero.
+		IntegralTerm = 0;
+	}
+	else
+	{
+		Output = ProportionalTerm + IntegralTerm + DerivativeTerm;
+	}
 
 	unsigned bucket = rpm / 500;
 	if (bucket >= Feedback::BucketCount)
