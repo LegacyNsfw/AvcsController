@@ -8,7 +8,7 @@
 #ifdef ARDUINO
 #define CLEAR() lcd.clear();
 #define SETCURSOR(x,y) lcd.setCursor(x,y)
-#define PRINT(x) lcd.print(x)
+#define PRINT(x) lcd.print(x); Serial.print(x);
 #define DELAY(x) delay(x)
 #else
 #include "stdafx.h"

@@ -60,8 +60,11 @@
 #include "Configuration.h"
 #include "CurveTable.h"
 
+#include <pwm_defs.h>
+#include <pwm_lib.h>
+
 //#include <..\Pwm_Lib\pwm_lib.h>
-#include "pwm_lib\pwm_lib.h"
+//#include <pwm_lib\pwm_lib.h>
 //#include "pwm_lib.h"
 
 ScreenNavigator navigator;
@@ -120,6 +123,8 @@ void setup() {
 	lcd.print("1234567890213456");
 	delay(100);
 	lcd.clear();
+
+	Serial.begin(115200);
 	
 	SelfTest();
 
@@ -160,7 +165,6 @@ void setup() {
 	LeftSolenoid.start(PWM_PERIOD, 0);
 	RightSolenoid.start(PWM_PERIOD, 0);
 
-	Serial.begin(115200);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
